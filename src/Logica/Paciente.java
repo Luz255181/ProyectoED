@@ -30,8 +30,10 @@ public class Paciente
 		return habitacion;
 	}
 	
-	private void FechaValida (String fecha)
+	private void FechaValida (String fecha) throws FechaException
 	{
-		
+		int dia;
+		int mes;
+		int anio;
 	}
 }
