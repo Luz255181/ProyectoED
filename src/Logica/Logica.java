@@ -14,7 +14,7 @@ public class Logica
 		habitaciones  = new MapeoHashAbierto<Integer,Paciente>();
 	}
 
-	public void IngresarPaciente(int DNI, String FN, String OS) throws InvalidKeyException
+	public void IngresarPaciente(int DNI, String FN, String OS) throws InvalidKeyException, FechaException
 	{
 		Paciente pas;
 		switch(DNI%10)
@@ -42,5 +42,12 @@ public class Logica
 		default: throw new InvalidKeyException("Clave Invalida");
 		}
 		habitaciones.put(DNI, pas);
+	}
+	
+	public void DesadignarHabitacion(int DNI) throws InvalidKeyException, PacienteException
+	{
+		Paciente pas = habitaciones.remove(DNI);
+		if(pas.equals(null))
+			throw new PacienteException("El DNI ingresado no corresponde con ningun paciente en el hospital");
 	}
 }

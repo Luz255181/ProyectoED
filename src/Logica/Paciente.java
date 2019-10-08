@@ -1,4 +1,5 @@
 package Logica;
+import Exception.FechaException;
 
 public class Paciente 
 {
@@ -6,8 +7,9 @@ public class Paciente
 	protected String OS;
 	protected char habitacion;
 	
-	public Paciente(String fecha, String obra, char hab)
+	public Paciente(String fecha, String obra, char hab) throws FechaException
 	{
+		FechaValida(fecha);
 		FN = fecha;
 		OS = obra;
 		habitacion = hab;
@@ -26,5 +28,10 @@ public class Paciente
 	public char getHabitacion()
 	{
 		return habitacion;
+	}
+	
+	private void FechaValida (String fecha)
+	{
+		
 	}
 }
