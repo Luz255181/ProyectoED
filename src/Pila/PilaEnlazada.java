@@ -1,11 +1,19 @@
 package Pila;
 import Exception.EmptyStackException;
 
+/**
+ * Clase que implementa una pila con enlaces.
+ * @author Maria Luz Cabral y Gonzalo Perez.
+ *
+ */
 public class PilaEnlazada<E> implements Stack<E>
 {
 	protected Nodo<E> top;
 	protected int size;
 	
+	/**
+	 * Crea una pila vacia.
+	 */
 	public PilaEnlazada()
 	{
 		top = new Nodo<E>();

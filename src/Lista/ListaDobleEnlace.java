@@ -6,12 +6,20 @@ import Exception.BoundaryViolationException;
 import Exception.EmptyListException;
 import Exception.InvalidPositionException;
 
+/**
+ * Implementa una Lista doblemente enlazada con sentinelas.
+ * @author Maria Luz Cabral y Gonzalo Perez.
+ *
+ */
 public class ListaDobleEnlace<E> implements PositionList<E> 
 {
 	protected int size;
 	protected DNodo<E> header;
 	protected DNodo<E> tailer;
 	
+	/**
+	 * Crea una lista vacia.
+	 */
 	public ListaDobleEnlace()
 	{
 		size = 0;

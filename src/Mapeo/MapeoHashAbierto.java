@@ -4,6 +4,13 @@ import Cola.*;
 import Exception.*;
 import Lista.*;
 
+/**
+ * Modela un Mapeo de entradas
+ * @author Maria Luz Cabraly Gonzalo Perez
+ *
+ * @param <K> Tipo de variable de la clave.
+ * @param <V> Tipo de variable del valor.
+ */
 public class MapeoHashAbierto<K,V> implements Map<K,V>
 {
 	protected int size;
@@ -11,6 +18,9 @@ public class MapeoHashAbierto<K,V> implements Map<K,V>
 	final float carga = 0.5f;
 	protected int tamano;
 	
+	/**
+	 * Crea un mapeo vacio.
+	 */
 	public MapeoHashAbierto()
 	{
 		size = 0;
@@ -155,17 +165,32 @@ public class MapeoHashAbierto<K,V> implements Map<K,V>
 		return toRet;
 	}
 
+	/**
+	 * Chequea si la clave pasada por parametro es valida.
+	 * @param key Clave a verificar.
+	 * @throws InvalidKeyException Si la clave pasada es invalida.
+	 */
 	private void checkKey(K key) throws InvalidKeyException
 	{
 		if(key == null)
 			throw new InvalidKeyException("clave invalida");
 	}
 	
+	/**
+	 * Genera el codigo hash con respecto a la clave pasada.
+	 * @param key Clave.
+	 * @return Codigo Hash.
+	 */
 	private int codigoHash(K key)
 	{
 		return (Integer) key.hashCode()%tamano;
 	}
 	
+	/**
+	 * Verifica si el numero pasado es primo.
+	 * @param numero Numero a verificar.
+	 * @return Si es primo o no.
+	 */
 	private boolean esPrimo(int numero){
 		  int contador = 2;
 		  boolean primo=true;
@@ -177,6 +202,11 @@ public class MapeoHashAbierto<K,V> implements Map<K,V>
 		  return primo;
 		}
 	
+	/**
+	 * Busca el proximo primo al numero pasado.
+	 * @param primo Numero al cual se le va a buscar el siguiente primo.
+	 * @return Siguiente Primo.
+	 */
 	private int proximoPrimo(int primo)
 	{
 		while(!esPrimo(primo))
@@ -186,6 +216,9 @@ public class MapeoHashAbierto<K,V> implements Map<K,V>
 		return primo;
 	}
 	
+	/**
+	 * Aumenta el tamanio del Mapeo una vez superado el Factor de Carga
+	 */
 	private void reHash()
 	{
 		Iterable<Entry<K,V>> entradas = entries();

@@ -1,5 +1,10 @@
 package Pila;
 
+/**
+ * Clase que implementa un nodo de una pila.
+ * @author Maria Luz Cabral y Gonzalo Perez.
+ *
+ */
 public class Nodo<E> 
 {
 	protected E dato; //dato del nodo.

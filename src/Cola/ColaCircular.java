@@ -1,6 +1,11 @@
 package Cola;
 import Exception.*;
 
+/**
+ * Clase que implementa una cola con arreglo circular.
+ * @author Maria Luz Cabral y Gonzalo Perez.
+ *
+ */
 public class ColaCircular<E> implements Queue<E>
 {
 	protected int size;
@@ -8,6 +13,9 @@ public class ColaCircular<E> implements Queue<E>
 	protected int tail;
 	protected E[] arreglo;
 	
+	/**
+	 *  Crea una cola vacia.
+	 */
 	public ColaCircular()
 	{
 		size = 0;
