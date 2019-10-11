@@ -2,7 +2,7 @@ package Logica;
 /**
  * La clase Paciente modela a un paciente hospedado en la sala de urgencias del hospital.
  * Por cada paciente creado se lleva registro de su DNI, obra social, fecha de nacimiento y
- * la habitación del hospital en la que se ocupa dicho paciente.
+ * la habitación del hospital en la que se hospeda dicho paciente.
  * @author Maria Luz Cabral y Gonzalo Perez
  *
  */
@@ -25,56 +25,52 @@ public class Paciente {
 		DNI = dni;
 		fechaNacimiento = fecha;
 		OS = obra;
-		habitacion = '\\';
+		habitacion = '@';
 	}
 	
 	//Comandos
-	
+	/**
+	 * Setea la obra social del paciente con la obra social pasado por parámetro.
+	 * @param obra Es la nueva obra social del paciente.
+	 */
+	public void setOS(String obra) {
+		OS = obra;
+	}
 	/**
 	 * Setea la habitacion en la que se quedara el Paciente.
-	 * @param hab Habitacion del Paciente.
+	 * @param hab Es la habitacion del paciente.
 	 */
-	public void setHabitacion(char hab) 
-	{
+	public void setHabitacion(char hab) {
 		habitacion = hab;
 	}
 	
-	
 	//Consultas
-	
 	/**
-	 * Retorna el DNI del Paciente.
+	 * Consulta el DNI del paciente y lo retorna.
 	 * @return DNI del Paciente.
 	 */
-	public int getDni() 
-	{
+	public int getDni() {
 		return DNI;
 	}
-	
 	/**
-	 * Retorna la Fecha de nacimiento del Paciente.
-	 * @return Fecha de Nacimiento
+	 * Consulta la fecha de nacimiento del paciente y la retorna.
+	 * @return Fecha de nacimiento del paciente
 	 */
-	public String getFechaNacimiento()
-	{
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	
 	/**
-	 * Retorna la Obra Social del Paciente.
-	 * @return Obra Social
+	 * Consulta la obra social del paciente y la retorna.
+	 * @return Obra social del paciente.
 	 */
-	public String getObraSocial()
-	{
+	public String getObraSocial() {
 		return OS;
 	}
-	
 	/**
-	 * Retorna la Habitacion del Paciente.
-	 * @return Habitacion del Paciente
+	 * Consulta la habitación del paciente y la retorna.
+	 * @return Habitacion del paciente
 	 */
-	public char getHabitacion()
-	{
+	public char getHabitacion() {
 		return habitacion;
 	}
 }

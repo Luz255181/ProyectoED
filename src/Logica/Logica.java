@@ -5,12 +5,10 @@ import Lista.*;
 import Mapeo.*;
 import Pila.*;
 
-public class Logica 
-{
+public class Logica {
 	protected MapeoHashAbierto<Integer,Paciente> habitaciones;
 	
-	public Logica()
-	{
+	public Logica() {
 		habitaciones  = new MapeoHashAbierto<Integer,Paciente>();
 	}
 
@@ -20,42 +18,39 @@ public class Logica
 	 * @return Habitacion que se le asigno al paciente.
 	 * @throws PacienteException Si los datos del paciente no son validos.
 	 */
-	public Character IngresarPaciente(Paciente pas) throws PacienteException
-	{
+	public char IngresarPaciente(Paciente p) throws PacienteException {
 		try {
-			if(habitaciones.get(pas.getDni()) != null)
-			{
-				
+			if(habitaciones.get(p.getDni()) != null) {
+				throw new PacienteException("Ya se encuentra hospedado un paciente con el DNI ingresado");
 			}
-			switch(pas.getDni()%10)
-			{
-			case 0: pas.setHabitacion('a');
+			switch(p.getDni()%10) {
+				case 0: p.setHabitacion('a');
 			break;
-			case 1: pas.setHabitacion('b');
+				case 1: p.setHabitacion('b');
 			break;
-			case 2: pas.setHabitacion('c');
+				case 2: p.setHabitacion('c');
 			break;
-			case 3: pas.setHabitacion('d');
+				case 3: p.setHabitacion('d');
 			break;
-			case 4: pas.setHabitacion('e');
+				case 4: p.setHabitacion('e');
 			break;
-			case 5: pas.setHabitacion('f');
+				case 5: p.setHabitacion('f');
 			break;
-			case 6: pas.setHabitacion('g');
+				case 6: p.setHabitacion('g');
 			break;
-			case 7: pas.setHabitacion('h');
+				case 7: p.setHabitacion('h');
 			break;
-			case 8: pas.setHabitacion('i');
+				case 8: p.setHabitacion('i');
 			break;
-			case 9: pas.setHabitacion('j');
+				case 9: p.setHabitacion('j');
 			break;
 			}
-			habitaciones.put(pas.getDni(), pas);
+			habitaciones.put(p.getDni(), p);
 		}
 		catch (InvalidKeyException e) {
-			throw new PacienteException("Los datos del paciente son Invalidos");
+			throw new PacienteException("Los datos del paciente ingresado son Invalidos");
 		}
-		return pas.getHabitacion();
+		return p.getHabitacion();
 	}
 
 	/**
@@ -64,16 +59,15 @@ public class Logica
 	 * @return Paciente que se le dio de alta
 	 * @throws PacienteException Si el paciente no se encuentra registrado en el hospital o si el DNI no es valido.
 	 */
-	public Paciente desasignarHabitacion(int dni) throws PacienteException
-	{
+	public Paciente desasignarHabitacion(int dni) throws PacienteException {
 		try {
-			Paciente pas = habitaciones.remove(dni);
-			if(pas.equals(null))
+			Paciente p = habitaciones.remove(dni);
+			if(p.equals(null))
 				throw new PacienteException("El DNI ingresado no corresponde con ningun paciente en el hospital");
-			return pas;
+			return p;
 		}
 		catch(InvalidKeyException e) {
-			throw new PacienteException("Documento Invalido");
+			throw new PacienteException("El documento ingresado es invalido");
 		}
 	}
 }
