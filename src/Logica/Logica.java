@@ -8,16 +8,10 @@ import Pila.*;
 public class Logica 
 {
 	protected MapeoHashAbierto<Integer,Paciente> habitaciones;
-	protected Integer[] PasHabitaciones;
 	
 	public Logica()
 	{
 		habitaciones  = new MapeoHashAbierto<Integer,Paciente>();
-		PasHabitaciones = new Integer[10];
-		for(int i = 0; i<10; i++)
-		{
-			PasHabitaciones[i] = 0;
-		}
 	}
 
 	/**
@@ -30,7 +24,10 @@ public class Logica
 	{
 		try
 		{
-			checkPaciente(pas);
+			if(habitaciones.get(pas.getDni()) != null)
+			{
+				
+			}
 			switch(pas.getDni()%10)
 			{
 			case 0: pas.setHabitacion('a');
@@ -82,16 +79,5 @@ public class Logica
 		{
 			throw new PacienteException("Documento Invalido");
 		}
-	}
-	
-	/**
-	 * Chequea si los datos del paciente son validos.
-	 * @param pas Paciente que se va a chequear.
-	 * @throws PacienteException Si los datos del paciente son Invalidos.
-	 */
-	private void checkPaciente(Paciente pas) throws PacienteException
-	{
-		if(pas.getFechaNacimiento().contentEquals("") || pas.getObraSocial().equals(""))
-			throw new PacienteException("Los datos del PAciente son Invalidos");
 	}
 }
