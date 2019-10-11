@@ -1,7 +1,8 @@
 package Mapeo;
 import java.util.Iterator;
+
+import Auxiliar.*;
 import Cola.*;
-import Exception.*;
 import Lista.*;
 
 /**

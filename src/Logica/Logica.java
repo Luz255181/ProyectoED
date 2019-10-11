@@ -1,5 +1,5 @@
 package Logica;
-import Exception.*;
+import Auxiliar.*;
 import Cola.*;
 import Lista.*;
 import Mapeo.*;
@@ -22,8 +22,7 @@ public class Logica
 	 */
 	public Character IngresarPaciente(Paciente pas) throws PacienteException
 	{
-		try
-		{
+		try {
 			if(habitaciones.get(pas.getDni()) != null)
 			{
 				
@@ -53,8 +52,7 @@ public class Logica
 			}
 			habitaciones.put(pas.getDni(), pas);
 		}
-		catch (InvalidKeyException e)
-		{
+		catch (InvalidKeyException e) {
 			throw new PacienteException("Los datos del paciente son Invalidos");
 		}
 		return pas.getHabitacion();
@@ -62,21 +60,19 @@ public class Logica
 
 	/**
 	 * Le desasigna la habitacion al paciente dado de alta.
-	 * @param DNI DNI del paciente.
+	 * @param dni Es el DNI del paciente dado de alta.
 	 * @return Paciente que se le dio de alta
 	 * @throws PacienteException Si el paciente no se encuentra registrado en el hospital o si el DNI no es valido.
 	 */
-	public Paciente DesadignarHabitacion(int DNI) throws PacienteException
+	public Paciente desasignarHabitacion(int dni) throws PacienteException
 	{
-		try
-		{
-			Paciente pas = habitaciones.remove(DNI);
+		try {
+			Paciente pas = habitaciones.remove(dni);
 			if(pas.equals(null))
 				throw new PacienteException("El DNI ingresado no corresponde con ningun paciente en el hospital");
 			return pas;
 		}
-		catch(InvalidKeyException e)
-		{
+		catch(InvalidKeyException e) {
 			throw new PacienteException("Documento Invalido");
 		}
 	}

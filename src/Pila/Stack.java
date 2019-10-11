@@ -1,5 +1,5 @@
 package Pila;
-import Exception.*;
+import Auxiliar.*;
 
 /**
  * Interface Stack

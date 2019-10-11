@@ -1,4 +1,4 @@
-package Exception;
+package Auxiliar;
 
 public class InvalidEntryException extends Exception
 {

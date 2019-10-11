@@ -2,9 +2,9 @@ package Lista;
 
 import java.util.Iterator;
 
-import Exception.BoundaryViolationException;
-import Exception.EmptyListException;
-import Exception.InvalidPositionException;
+import Auxiliar.BoundaryViolationException;
+import Auxiliar.EmptyListException;
+import Auxiliar.InvalidPositionException;
 
 /**
  * Implementa una Lista doblemente enlazada con sentinelas.

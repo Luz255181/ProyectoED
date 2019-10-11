@@ -1,5 +1,5 @@
 package Cola;
-import Exception.*;
+import Auxiliar.*;
 
 /**
  * Clase que implementa una cola con arreglo circular.

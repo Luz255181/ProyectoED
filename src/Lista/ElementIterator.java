@@ -1,6 +1,7 @@
 package Lista;
 import java.util.*;
-import Exception.*;
+
+import Auxiliar.*;
 
 public class ElementIterator<E> implements Iterator<E> {
 	protected PositionList<E> lista;

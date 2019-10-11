@@ -1,8 +1,9 @@
 package Lista;
-import Exception.EmptyListException;
 import java.util.Iterator;
-import Exception.BoundaryViolationException;
-import Exception.InvalidPositionException;
+
+import Auxiliar.BoundaryViolationException;
+import Auxiliar.EmptyListException;
+import Auxiliar.InvalidPositionException;
 
 /**
  * Interface PositionList

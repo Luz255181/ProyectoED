@@ -1,5 +1,5 @@
 package Pila;
-import Exception.EmptyStackException;
+import Auxiliar.EmptyStackException;
 
 /**
  * Clase que implementa una pila con enlaces.

@@ -1,5 +1,5 @@
 package Mapeo;
-import Exception.InvalidKeyException;
+import Auxiliar.InvalidKeyException;
 /**
  * Interface Map
  * @author Cátedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computación, UNS.
