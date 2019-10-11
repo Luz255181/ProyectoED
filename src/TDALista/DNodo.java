@@ -1,4 +1,4 @@
-package Lista;
+package TDALista;
 
 public class DNodo<E> implements Position<E>
 {

@@ -1,9 +1,9 @@
 package Logica;
 import Auxiliar.*;
-import Cola.*;
-import Lista.*;
-import Mapeo.*;
-import Pila.*;
+import TDACola.*;
+import TDALista.*;
+import TDAMapeo.*;
+import TDAPila.*;
 
 public class Logica {
 	protected MapeoHashAbierto<Integer,Paciente> habitaciones;

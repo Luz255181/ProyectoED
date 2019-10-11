@@ -1,4 +1,4 @@
-package Mapeo;
+package TDAMapeo;
 import Auxiliar.InvalidKeyException;
 /**
  * Interface Map

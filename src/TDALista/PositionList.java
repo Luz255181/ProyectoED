@@ -1,4 +1,4 @@
-package Lista;
+package TDALista;
 import java.util.Iterator;
 
 import Auxiliar.BoundaryViolationException;
