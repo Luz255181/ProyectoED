@@ -1,7 +1,8 @@
 package GUI;
 import java.awt.*;
 import javax.swing.*;
-import Programa.Programa;
+import javax.swing.border.*;
+import Programa.*;
 
 public class GUI_Programa extends JFrame {
 	private JButton botonIngresar;
@@ -10,15 +11,15 @@ public class GUI_Programa extends JFrame {
 	private JLabel etiquetaContraseña;
 	private JPasswordField textoContraseña;
 	private JPanel panelIngreso, panelHabitaciones, panelUrgencias;
-	private Programa programa;
+	private Logica logica;
 	
 	public GUI_Programa() {
-		super();
+		super("Sala de urgencias");
 		setSize(new Dimension(1375, 730));
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		programa=new Programa();
+		logica=new Logica();
 		armarBotones();
 		etiquetaContraseña=new JLabel(" Ingrese su contraseña: ");
 		textoContraseña=new JPasswordField();
@@ -46,11 +47,16 @@ public class GUI_Programa extends JFrame {
 		
 		panelHabitaciones=new JPanel();
 		panelHabitaciones.setLayout(new GridLayout(5, 1));
+		panelHabitaciones.setBorder(BorderFactory.createTitledBorder(null, "Habitaciones", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 		panelHabitaciones.add(botonAsignarH); panelHabitaciones.add(botonDesasignarH);
-		panelHabitaciones.add(botonDatos); panelHabitaciones.add(botonListar); panelHabitaciones.add(botonCantPacientes);
+		panelHabitaciones.add(botonDatos); panelHabitaciones.add(botonListar);
+		panelHabitaciones.add(botonCantPacientes);
 		
 		panelUrgencias=new JPanel();
-		panelUrgencias.setLayout(new GridLayout(3, 1));
-		panelUrgencias.add(botonIngresarUrgencias); panelUrgencias.add(botonAtender); panelUrgencias.add(botonCantUrgencias);
+		panelUrgencias.setLayout(new GridLayout(5, 1));
+		panelUrgencias.setBorder(BorderFactory.createTitledBorder(null, "Urgencias", TitledBorder.RIGHT, TitledBorder.DEFAULT_POSITION));
+		panelUrgencias.add(botonIngresarUrgencias); panelUrgencias.add(new JLabel());
+		panelUrgencias.add(botonAtender); panelUrgencias.add(new JLabel());
+		panelUrgencias.add(botonCantUrgencias);
 	}
 }
