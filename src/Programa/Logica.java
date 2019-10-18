@@ -127,6 +127,45 @@ public class Logica {
 	public int cantPacientesUrgencias() {
 		return urgencias.size();
 	}
+
+	/**
+	 * Ingresa un paciente a urgencias segun su prioridad
+	 * @param prioridad Prioridad del paciente.
+	 * @param DNI DNI del paciente.
+	 * @throws PacienteException Si la prioridad pasada no se encuentra en el rango aceptado
+	 */
+	public void IngresarPaciente(int prioridad, int DNI) throws PacienteException
+	{
+		try
+		{
+			if(prioridad == 1 || prioridad == 2 || prioridad == 3 || prioridad == 4|| prioridad == 5)
+			urgencias.insert(prioridad, DNI);
+			else
+				throw new PacienteException("La prioridad no se encuentra dentro del rango aceptado");
+		}
+		catch(InvalidKeyException e)
+		{
+			throw new PacienteException("La prioridad no es valida");
+		}
+	}
+
+	/**
+	 * Atiende al Paciente con mayor prioridad.
+	 * @return DNI del paciente.
+	 * @throws PacienteException Si no hay pacientes en Urgencias.
+	 */
+	public int AtenderPaciente() throws PacienteException
+	{
+		try
+		{
+			int DNI = urgencias.removeMin().getValue();
+			return DNI;
+		}
+		catch(EmptyPriorityQueueException e)
+		{
+			throw new PacienteException("No hay pacientes en urgencias");
+		}
+	}
 	/**
 	 * Verifica si la contraseña pasada por parámetro respeta el formato especificado.
 	 * De ser así, se brinda acceso al sistema, en caso contrario la aplicación permanece bloqueada. 
