@@ -2,12 +2,14 @@ package Programa;
 import java.util.Iterator;
 import Auxiliar.*;
 import TDACola.*;
+import TDAColaConPrioridad.*;
 import TDALista.*;
 import TDAMapeo.*;
 import TDAPila.*;
 
 public class Logica {
 	protected MapeoHashAbierto<Integer,Paciente> pacientes;
+	protected PriorityQueue<Integer, Integer> urgencias;
 	//Constructor
 	public Logica() {
 		pacientes  = new MapeoHashAbierto<Integer,Paciente>();
@@ -107,16 +109,23 @@ public class Logica {
 		return vacias;
 	}
 	/**
-	 * Consulta cuantos pacientes se encuentran en la habitación pasada por parámetro.
+	 * Consulta la cantidad de pacientes que se encuentran en la habitación pasada por parámetro.
 	 * @param hab Es la letra de la habitación a consultar.
 	 * @return Retorna la cantidad de pacientes en la habitación solicitada.
 	 */
 	public int cantPacientesHabitacion(char hab) {
-		int cant = 0;
+		int cant=0;
 		for (Paciente p:pacientes.values())
-			if (p.getHabitacion() == hab)
+			if (p.getHabitacion()==hab)
 				cant++;
 		return cant;
+	}
+	/**
+	 * Consulta la cantidad de pacientes que esperan ser atendidos en Urgencias
+	 * @return Retorna la cantidad de pacientes en Urgencias
+	 */
+	public int cantPacientesUrgencias() {
+		return urgencias.size();
 	}
 	/**
 	 * Verifica si la contraseña pasada por parámetro respeta el formato especificado.
