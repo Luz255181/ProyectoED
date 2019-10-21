@@ -21,7 +21,7 @@ public class Logica {
 	 * @return Habitacion que se le asigno al paciente.
 	 * @throws PacienteException Si los datos del paciente no son validos.
 	 */
-	public char IngresarPaciente(Paciente p) throws PacienteException {
+	public char asignarHabitacion(Paciente p) throws PacienteException {
 		try {
 			if(pacientes.get(p.getDni()) != null) {
 				throw new PacienteException("Ya se encuentra hospedado un paciente con el DNI ingresado.");
@@ -121,50 +121,47 @@ public class Logica {
 		return cant;
 	}
 	/**
-	 * Consulta la cantidad de pacientes que esperan ser atendidos en Urgencias
-	 * @return Retorna la cantidad de pacientes en Urgencias
+	 * Ingresa un paciente a urgencias ordenandolo según su prioridad.
+	 * @param prioridad Es la Prioridad del paciente a ingresar.
+	 * @param DNI Es el DNI del paciente a ingresar.
+	 * @throws PacienteException Si la prioridad pasada por parámetro no se encuentra en el rango aceptado
 	 */
-	public int cantPacientesUrgencias() {
-		return urgencias.size();
-	}
-
-	/**
-	 * Ingresa un paciente a urgencias segun su prioridad
-	 * @param prioridad Prioridad del paciente.
-	 * @param DNI DNI del paciente.
-	 * @throws PacienteException Si la prioridad pasada no se encuentra en el rango aceptado
-	 */
-	public void IngresarPaciente(int prioridad, int DNI) throws PacienteException
+	public void ingresarPaciente(int prioridad, int DNI) throws PacienteException
 	{
 		try
 		{
-			if(prioridad == 1 || prioridad == 2 || prioridad == 3 || prioridad == 4|| prioridad == 5)
-			urgencias.insert(prioridad, DNI);
-			else
+			if (prioridad<1 || prioridad>5)
 				throw new PacienteException("La prioridad no se encuentra dentro del rango aceptado");
+			else urgencias.insert(prioridad, DNI);
 		}
 		catch(InvalidKeyException e)
 		{
 			throw new PacienteException("La prioridad no es valida");
 		}
 	}
-
 	/**
-	 * Atiende al Paciente con mayor prioridad.
-	 * @return DNI del paciente.
+	 * Atiende al Paciente prioritario de urgencias.
+	 * @return Retorna el DNI del paciente atendido.
 	 * @throws PacienteException Si no hay pacientes en Urgencias.
 	 */
-	public int AtenderPaciente() throws PacienteException
+	public int atenderPaciente() throws PacienteException
 	{
 		try
 		{
-			int DNI = urgencias.removeMin().getValue();
+			int DNI = urgencias.removeMin().getKey();
 			return DNI;
 		}
 		catch(EmptyPriorityQueueException e)
 		{
 			throw new PacienteException("No hay pacientes en urgencias");
 		}
+	}
+	/**
+	 * Consulta la cantidad de pacientes que esperan ser atendidos en Urgencias
+	 * @return Retorna la cantidad de pacientes en Urgencias
+	 */
+	public int cantPacientesUrgencias() {
+		return urgencias.size();
 	}
 	/**
 	 * Verifica si la contraseña pasada por parámetro respeta el formato especificado.
