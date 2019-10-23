@@ -10,18 +10,19 @@ import TDAPila.*;
 public class Logica {
 	protected MapeoHashAbierto<Integer,Paciente> pacientes;
 	protected PriorityQueue<Integer, Integer> urgencias;
+	
 	//Constructor
 	public Logica() {
 		pacientes  = new MapeoHashAbierto<Integer,Paciente>();
+		urgencias = new Heap<Integer, Integer>(new Comparador<Integer>());
 	}
-	//Consultas
+	//Comandos
 	/**
 	 * Ingresa un paciente al sistema y le asigna una habitacion.
-	 * @param p Paciente a ingresar.
-	 * @return Habitacion que se le asigno al paciente.
+	 * @param p Es el paciente a ingresar.
 	 * @throws PacienteException Si los datos del paciente no son validos.
 	 */
-	public char asignarHabitacion(Paciente p) throws PacienteException {
+	public void asignarHabitacion(Paciente p) throws PacienteException {
 		try {
 			if(pacientes.get(p.getDni()) != null) {
 				throw new PacienteException("Ya se encuentra hospedado un paciente con el DNI ingresado.");
@@ -53,13 +54,28 @@ public class Logica {
 		catch (InvalidKeyException e) {
 			throw new PacienteException("Los datos del paciente ingresado no son validos.");
 		}
-		return p.getHabitacion();
 	}
-
+	/**
+	 * Ingresa un paciente a urgencias ordenandolo según su prioridad.
+	 * @param prioridad Es la prioridad del paciente a ingresar.
+	 * @param DNI Es el DNI del paciente a ingresar.
+	 * @throws PacienteException Si la prioridad pasada por parámetro no se encuentra en el rango aceptado
+	 */
+	public void ingresarPaciente(int prioridad, int DNI) throws PacienteException {
+		try {
+			if (prioridad<1 || prioridad>5)
+				throw new PacienteException("La prioridad no se encuentra dentro del rango aceptado");
+			else urgencias.insert(prioridad, DNI);
+		}
+		catch(InvalidKeyException e) {
+			throw new PacienteException("La prioridad no es valida");
+		}
+	}
+	//Consultas
 	/**
 	 * Desasigna la habitacion asignada al paciente dado de alta y lo retorna.
 	 * @param dni Es el DNI del paciente dado de alta.
-	 * @return Paciente que se le dio de alta.
+	 * @return Retorna el paciente al que se le dio de alta.
 	 * @throws PacienteException Si el paciente no se encuentra registrado en el hospital o si el DNI no es valido.
 	 */
 	public Paciente desasignarHabitacion(int dni) throws PacienteException {
@@ -121,44 +137,22 @@ public class Logica {
 		return cant;
 	}
 	/**
-	 * Ingresa un paciente a urgencias ordenandolo según su prioridad.
-	 * @param prioridad Es la Prioridad del paciente a ingresar.
-	 * @param DNI Es el DNI del paciente a ingresar.
-	 * @throws PacienteException Si la prioridad pasada por parámetro no se encuentra en el rango aceptado
-	 */
-	public void ingresarPaciente(int prioridad, int DNI) throws PacienteException
-	{
-		try
-		{
-			if (prioridad<1 || prioridad>5)
-				throw new PacienteException("La prioridad no se encuentra dentro del rango aceptado");
-			else urgencias.insert(prioridad, DNI);
-		}
-		catch(InvalidKeyException e)
-		{
-			throw new PacienteException("La prioridad no es valida");
-		}
-	}
-	/**
 	 * Atiende al Paciente prioritario de urgencias.
 	 * @return Retorna el DNI del paciente atendido.
-	 * @throws PacienteException Si no hay pacientes en Urgencias.
+	 * @throws PacienteException Si no hay pacientes en urgencias.
 	 */
-	public int atenderPaciente() throws PacienteException
-	{
-		try
-		{
+	public int atenderPaciente() throws PacienteException {
+		try {
 			int DNI = urgencias.removeMin().getKey();
 			return DNI;
 		}
-		catch(EmptyPriorityQueueException e)
-		{
+		catch(EmptyPriorityQueueException e) {
 			throw new PacienteException("No hay pacientes en urgencias");
 		}
 	}
 	/**
 	 * Consulta la cantidad de pacientes que esperan ser atendidos en Urgencias
-	 * @return Retorna la cantidad de pacientes en Urgencias
+	 * @return Retorna la cantidad de pacientes en urgencias
 	 */
 	public int cantPacientesUrgencias() {
 		return urgencias.size();
