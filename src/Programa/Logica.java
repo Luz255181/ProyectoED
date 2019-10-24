@@ -112,19 +112,29 @@ public class Logica {
 	 * Consulta cuales son las habitaciones que se encuentran totalmente vacías.
 	 * @return Retorna una lista que contiene las letras de las habitaciones que están vacias.
 	 */
-	public PositionList<Character> habitacionesVacias() {
-		PositionList<Character> vacias= new ListaDobleEnlace<Character>();
-		boolean estaVacia;
-		for (char hab = 'a'; hab <= 'j'; hab++) {
-			estaVacia = true;
-			Iterator<Paciente> itPacientes = pacientes.values().iterator();
-			while (estaVacia && itPacientes.hasNext())
-				if (itPacientes.next().getHabitacion() == hab)
-					estaVacia = false;
-			if (estaVacia)
-				vacias.addLast(hab);
+	public String habitacionesVacias() throws PacienteException{
+		try {
+			PositionList<Character> vacias= new ListaDobleEnlace<Character>();
+			boolean estaVacia;
+			for (char hab = 'a'; hab <= 'j'; hab++) {
+				estaVacia = true;
+				Iterator<Paciente> itPacientes = pacientes.values().iterator();
+				while (estaVacia && itPacientes.hasNext())
+					if (itPacientes.next().getHabitacion() == hab)
+						estaVacia = false;
+				if (estaVacia)
+					vacias.addLast(hab);
+			}
+			String habitaciones = "" + vacias.first();
+			for (Position<Character> pos : vacias.positions())
+				habitaciones = habitaciones + " | " + pos.element();
+			return habitaciones;
 		}
-		return vacias;
+		catch (EmptyListException h)
+		{
+			throw new PacienteException("No hay habitaciones vacías");
+		}
+
 	}
 	/**
 	 * Consulta la cantidad de pacientes que se encuentran en la habitación pasada por parámetro.
