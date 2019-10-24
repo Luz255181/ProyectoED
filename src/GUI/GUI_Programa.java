@@ -237,11 +237,9 @@ public class GUI_Programa extends JFrame {
 			try {
 				if (!dniHab.getText().isEmpty()) {
 					int documento = Integer.parseInt(dniHab.getText());
-					Paciente p = programa.consultarDatosPaciente(documento);
 					dniHab.setText("");
 					mensaje.showMessageDialog(null,
-							"DNI: " + p.getDni() + "\n Fecha de nacimiento: " + p.getFechaNacimiento()
-									+ "\n Obra social: " + p.getObraSocial() + "\n Habitación: " + p.getHabitacion(),
+							programa.consultarDatosPaciente(documento),
 							"Datos del paciente", JOptionPane.INFORMATION_MESSAGE);
 				} else {
 					dniHab.setText("");
@@ -258,8 +256,7 @@ public class GUI_Programa extends JFrame {
 		public void actionPerformed(ActionEvent evento) {
 			JOptionPane mensaje = new JOptionPane();
 			try {
-				mensaje.showMessageDialog(null, "Las habitaciones vacías son: " + programa.habitacionesVacias(), "Habitaciones vacías",
-						JOptionPane.INFORMATION_MESSAGE);
+				mensaje.showMessageDialog(null, "Las habitaciones vacías son: " + programa.habitacionesVacias(), "Habitaciones vacías", JOptionPane.INFORMATION_MESSAGE);
 			} catch (PacienteException e) {
 				mensaje.showMessageDialog(null, "No hay habitaciones vacías", "Habitaciones vacías",
 						JOptionPane.INFORMATION_MESSAGE);

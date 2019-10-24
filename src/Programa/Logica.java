@@ -97,12 +97,14 @@ public class Logica {
 	 * @return Retorna al paciente correspondiente al DNI ingresado.
 	 * @throws PacienteException Si no existe un paciente con el DNI ingresado o no se encontró en el sistema.
 	 */
-	public Paciente consultarDatosPaciente(int dni) throws PacienteException {
+	public String consultarDatosPaciente(int dni) throws PacienteException {
 		try {
 			Paciente p = pacientes.get(dni);
 			if (p == null)
 				throw new PacienteException("No existe un paciente con el DNI ingresado.");
-			return p;
+			String datos = "DNI: " + p.getDni() + "\n Fecha de nacimiento: " + p.getFechaNacimiento()
+			+ "\n Obra social: " + p.getObraSocial() + "\n Habitación: " + p.getHabitacion();
+			return datos;
 		}
 		catch (InvalidKeyException e) {
 			throw new PacienteException("No se encontró un paciente con el DNI ingresado.");
@@ -125,7 +127,7 @@ public class Logica {
 				if (estaVacia)
 					vacias.addLast(hab);
 			}
-			String habitaciones = "" + vacias.first();
+			String habitaciones = "" + vacias.first().element();
 			for (Position<Character> pos : vacias.positions())
 				habitaciones = habitaciones + " | " + pos.element();
 			return habitaciones;
