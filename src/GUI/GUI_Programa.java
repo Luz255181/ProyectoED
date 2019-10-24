@@ -258,13 +258,9 @@ public class GUI_Programa extends JFrame {
 		public void actionPerformed(ActionEvent evento) {
 			JOptionPane mensaje = new JOptionPane();
 			try {
-				PositionList<Character> listaHabitaciones = programa.habitacionesVacias();
-				String habitaciones = "" + listaHabitaciones.remove(listaHabitaciones.first());
-				for (Position<Character> pos : listaHabitaciones.positions())
-					habitaciones = habitaciones + " | " + pos.element();
-				mensaje.showMessageDialog(null, "Las habitaciones vacías son: " + habitaciones, "Habitaciones vacías",
+				mensaje.showMessageDialog(null, "Las habitaciones vacías son: " + programa.habitacionesVacias(), "Habitaciones vacías",
 						JOptionPane.INFORMATION_MESSAGE);
-			} catch (EmptyListException | InvalidPositionException e) {
+			} catch (PacienteException e) {
 				mensaje.showMessageDialog(null, "No hay habitaciones vacías", "Habitaciones vacías",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
