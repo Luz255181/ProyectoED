@@ -22,11 +22,12 @@ public class Logica {
 	 * @param p Es el paciente a ingresar.
 	 * @throws PacienteException Si los datos del paciente no son validos.
 	 */
-	public void asignarHabitacion(Paciente p) throws PacienteException {
+	public char asignarHabitacion(int DNI, String fecha, String obra) throws PacienteException {
 		try {
-			if(pacientes.get(p.getDni()) != null) {
+			if(pacientes.get(DNI) != null) {
 				throw new PacienteException("Ya se encuentra hospedado un paciente con el DNI ingresado.");
 			}
+			Paciente p = new Paciente(DNI,fecha, obra);
 			switch(p.getDni()%10) {
 				case 0: p.setHabitacion('a');
 			break;
@@ -50,6 +51,7 @@ public class Logica {
 			break;
 			}
 			pacientes.put(p.getDni(), p);
+			return p.getHabitacion();
 		}
 		catch (InvalidKeyException e) {
 			throw new PacienteException("Los datos del paciente ingresado no son validos.");
@@ -63,7 +65,7 @@ public class Logica {
 	 */
 	public void ingresarPaciente(int prioridad, int DNI) throws PacienteException {
 		try {
-			if (prioridad<1 || prioridad>5)
+			if (prioridad<1 || 5<prioridad)
 				throw new PacienteException("La prioridad no se encuentra dentro del rango aceptado");
 			else urgencias.insert(prioridad, DNI);
 		}
@@ -81,7 +83,7 @@ public class Logica {
 	public Paciente desasignarHabitacion(int dni) throws PacienteException {
 		try {
 			Paciente p = pacientes.remove(dni);
-			if(p.equals(null))
+			if(p == null)
 				throw new PacienteException("El DNI ingresado no corresponde con ningun paciente registrado.");
 			return p;
 		}
@@ -143,7 +145,7 @@ public class Logica {
 	 */
 	public int atenderPaciente() throws PacienteException {
 		try {
-			int DNI = urgencias.removeMin().getKey();
+			int DNI = urgencias.removeMin().getValue();
 			return DNI;
 		}
 		catch(EmptyPriorityQueueException e) {
