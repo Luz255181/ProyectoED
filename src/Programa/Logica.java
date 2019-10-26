@@ -7,20 +7,48 @@ import TDALista.*;
 import TDAMapeo.*;
 import TDAPila.*;
 
+/**
+ * Clase que modela las funciones que brinda el sistema.
+ * @author Luz Cabral & Gonzalo Perez
+ *
+ */
 public class Logica {
 	protected MapeoHashAbierto<Integer,Paciente> pacientes;
 	protected PriorityQueue<Integer, Integer> urgencias;
 	
 	//Constructor
+	/**
+	 * Inicializa el sistema de registro de habitaciones y el sistema de urgencias ambos vacíos.
+	 */
 	public Logica() {
-		pacientes  = new MapeoHashAbierto<Integer,Paciente>();
+		pacientes = new MapeoHashAbierto<Integer,Paciente>();
 		urgencias = new Heap<Integer, Integer>(new Comparador<Integer>());
 	}
 	//Comandos
 	/**
+	 * Ingresa un paciente a urgencias ordenandolo según su prioridad.
+	 * @param prioridad Es la prioridad del paciente a ingresar.
+	 * @param DNI Es el DNI del paciente a ingresar.
+	 * @throws PacienteException Si la prioridad pasada por parámetro no se encuentra dentro del rango aceptado
+	 */
+	public void ingresarPaciente(int prioridad, int DNI) throws PacienteException {
+		try {
+			if (prioridad<1 || 5<prioridad)
+				throw new PacienteException("La prioridad no se encuentra dentro del rango aceptado");
+			else urgencias.insert(prioridad, DNI);
+		}
+		catch(InvalidKeyException e) {
+			throw new PacienteException("La prioridad no es valida");
+		}
+	}
+	//Consultas
+	/**
 	 * Ingresa un paciente al sistema y le asigna una habitacion.
-	 * @param p Es el paciente a ingresar.
-	 * @throws PacienteException Si los datos del paciente no son validos.
+	 * @param DNI Es el DNI del paciente.
+	 * @param fecha Es la fecha de nacimiento del paciente.
+	 * @param obra Es la obra social del paciente.
+	 * @return Retorna la letra de la habitación que se le asigno al paciente.
+	 * @throws PacienteException Si los datos ingresado del paciente son invalidos.
 	 */
 	public char asignarHabitacion(int DNI, String fecha, String obra) throws PacienteException {
 		try {
@@ -58,23 +86,6 @@ public class Logica {
 		}
 	}
 	/**
-	 * Ingresa un paciente a urgencias ordenandolo según su prioridad.
-	 * @param prioridad Es la prioridad del paciente a ingresar.
-	 * @param DNI Es el DNI del paciente a ingresar.
-	 * @throws PacienteException Si la prioridad pasada por parámetro no se encuentra en el rango aceptado
-	 */
-	public void ingresarPaciente(int prioridad, int DNI) throws PacienteException {
-		try {
-			if (prioridad<1 || 5<prioridad)
-				throw new PacienteException("La prioridad no se encuentra dentro del rango aceptado");
-			else urgencias.insert(prioridad, DNI);
-		}
-		catch(InvalidKeyException e) {
-			throw new PacienteException("La prioridad no es valida");
-		}
-	}
-	//Consultas
-	/**
 	 * Desasigna la habitacion asignada al paciente dado de alta y lo retorna.
 	 * @param dni Es el DNI del paciente dado de alta.
 	 * @return Retorna el paciente al que se le dio de alta.
@@ -97,46 +108,34 @@ public class Logica {
 	 * @return Retorna al paciente correspondiente al DNI ingresado.
 	 * @throws PacienteException Si no existe un paciente con el DNI ingresado o no se encontró en el sistema.
 	 */
-	public String consultarDatosPaciente(int dni) throws PacienteException {
+	public Paciente consultarDatosPaciente(int dni) throws PacienteException {
 		try {
-			Paciente p = pacientes.get(dni);
-			if (p == null)
-				throw new PacienteException("No existe un paciente con el DNI ingresado.");
-			String datos = "DNI: " + p.getDni() + "\n Fecha de nacimiento: " + p.getFechaNacimiento()
-			+ "\n Obra social: " + p.getObraSocial() + "\n Habitación: " + p.getHabitacion();
-			return datos;
+			Paciente p=pacientes.get(dni);
+			if (p==null)
+				throw new PacienteException("No se encontró un paciente con el DNI ingresado.");
+			return p;
 		}
 		catch (InvalidKeyException e) {
-			throw new PacienteException("No se encontró un paciente con el DNI ingresado.");
+			throw new PacienteException("No existe un paciente con el DNI ingresado.");
 		}
 	}
 	/**
 	 * Consulta cuales son las habitaciones que se encuentran totalmente vacías.
 	 * @return Retorna una lista que contiene las letras de las habitaciones que están vacias.
 	 */
-	public String habitacionesVacias() throws PacienteException{
-		try {
-			PositionList<Character> vacias= new ListaDobleEnlace<Character>();
-			boolean estaVacia;
-			for (char hab = 'a'; hab <= 'j'; hab++) {
-				estaVacia = true;
-				Iterator<Paciente> itPacientes = pacientes.values().iterator();
-				while (estaVacia && itPacientes.hasNext())
-					if (itPacientes.next().getHabitacion() == hab)
-						estaVacia = false;
-				if (estaVacia)
-					vacias.addLast(hab);
-			}
-			String habitaciones = "" + vacias.first().element();
-			for (Position<Character> pos : vacias.positions())
-				habitaciones = habitaciones + " | " + pos.element();
-			return habitaciones;
+	public PositionList<Character> habitacionesVacias() {
+		PositionList<Character> vacias= new ListaDobleEnlace<Character>();
+		boolean estaVacia;
+		for (char hab='a'; hab<='j'; hab++) {
+			estaVacia=true;
+			Iterator<Paciente> itPacientes=pacientes.values().iterator();
+			while (estaVacia && itPacientes.hasNext())
+				if (itPacientes.next().getHabitacion()==hab)
+					estaVacia=false;
+			if (estaVacia)
+				vacias.addLast(hab);
 		}
-		catch (EmptyListException h)
-		{
-			throw new PacienteException("No hay habitaciones vacías");
-		}
-
+		return vacias;
 	}
 	/**
 	 * Consulta la cantidad de pacientes que se encuentran en la habitación pasada por parámetro.
@@ -151,9 +150,9 @@ public class Logica {
 		return cant;
 	}
 	/**
-	 * Atiende al Paciente prioritario de urgencias.
+	 * Atiende al Paciente prioritario del sistema de urgencias.
 	 * @return Retorna el DNI del paciente atendido.
-	 * @throws PacienteException Si no hay pacientes en urgencias.
+	 * @throws PacienteException Si no hay pacientes en el sistema de urgencias.
 	 */
 	public int atenderPaciente() throws PacienteException {
 		try {
@@ -165,8 +164,8 @@ public class Logica {
 		}
 	}
 	/**
-	 * Consulta la cantidad de pacientes que esperan ser atendidos en Urgencias
-	 * @return Retorna la cantidad de pacientes en urgencias
+	 * Consulta la cantidad de pacientes que esperan ser atendidos en Urgencias.
+	 * @return Retorna la cantidad de pacientes en urgencias.
 	 */
 	public int cantPacientesUrgencias() {
 		return urgencias.size();

@@ -1,5 +1,4 @@
 package GUI;
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -33,7 +32,6 @@ public class GUI_Programa extends JFrame {
 		getContentPane().add(panelIngreso, BorderLayout.NORTH);
 		getContentPane().add(panelControles, BorderLayout.CENTER);
 	}
-
 	private void armarBotones() {
 		// Creo los botones
 		botonSalir = new JButton(" Salir ");
@@ -70,9 +68,8 @@ public class GUI_Programa extends JFrame {
 		botonIngresar.addActionListener(new OyenteUrgencias());
 		botonAtender.addActionListener(new OyenteUrgencias());
 	}
-
 	private void armarComponentes() {
-		// Creo las etiquetas con sus respectivos textos
+		//Creo las etiquetas con sus respectivos textos
 		etiquetaContraseña = new JLabel(" Contraseña: ");
 		etiquetaDNIhab = new JLabel("DNI: ");
 		etiquetaDNIurg = new JLabel("DNI: ");
@@ -82,11 +79,11 @@ public class GUI_Programa extends JFrame {
 		etiquetaHabitacion = new JLabel("Habitación: ");
 		etiquetaCodigo = new JLabel("Código de urgencia: ");
 
-		// Creo el campo de contraseña y le agrego su oyente
+		//Creo el campo de contraseña y le agrego su oyente
 		textoContraseña = new JPasswordField();
 		textoContraseña.addActionListener(new OyenteAcceso());
 
-		// Creo los campos de texto y seteo sus tamaños
+		//Creo los campos de texto y seteo sus tamaños
 		dniHab = new JTextField();
 		dniHab.setPreferredSize(new Dimension(500, 25));
 		dniUrg = new JTextField();
@@ -98,13 +95,12 @@ public class GUI_Programa extends JFrame {
 		OS = new JTextField();
 		OS.setPreferredSize(new Dimension(450, 25));
 
-		// Creo las cajas de opciones y seteo las opciones
+		//Creo las cajas de opciones y seteo las opciones
 		Character[] habitaciones = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
 		habitacion = new JComboBox<Character>(habitaciones);
 		Integer[] prioridades = { 1, 2, 3, 4, 5 };
 		codUrgencia = new JComboBox<Integer>(prioridades);
 	}
-
 	private void armarPaneles() {
 		panelIngreso = new JPanel();
 		panelIngreso.setLayout(new BorderLayout());
@@ -113,8 +109,7 @@ public class GUI_Programa extends JFrame {
 		panelIngreso.add(botonSalir, BorderLayout.EAST);
 
 		panelCentral = new JPanel();
-		panelCentral.setBorder(BorderFactory.createTitledBorder(null, "Datos Paciente", TitledBorder.CENTER,
-				TitledBorder.DEFAULT_POSITION));
+		panelCentral.setBorder(BorderFactory.createTitledBorder(null, "Datos Paciente", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
 		panelCentral.add(etiquetaDNIdatos);
 		panelCentral.add(dniDatos);
 		panelCentral.add(etiquetaFecha);
@@ -126,8 +121,7 @@ public class GUI_Programa extends JFrame {
 		panelHabitaciones = new JPanel();
 		panelHabitaciones.setLayout(new FlowLayout());
 		panelHabitaciones.setPreferredSize(new Dimension(600, 130));
-		panelHabitaciones.setBorder(BorderFactory.createTitledBorder(null, "Habitaciones", TitledBorder.LEFT,
-				TitledBorder.DEFAULT_POSITION));
+		panelHabitaciones.setBorder(BorderFactory.createTitledBorder(null, "Habitaciones", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
 		panelHabitaciones.add(etiquetaDNIhab);
 		panelHabitaciones.add(dniHab);
 		panelHabitaciones.add(botonDatos);
@@ -140,8 +134,7 @@ public class GUI_Programa extends JFrame {
 		panelUrgencias = new JPanel();
 		panelUrgencias.setLayout(new FlowLayout());
 		panelUrgencias.setPreferredSize(new Dimension(600, 100));
-		panelUrgencias.setBorder(
-				BorderFactory.createTitledBorder(null, "Urgencias", TitledBorder.RIGHT, TitledBorder.DEFAULT_POSITION));
+		panelUrgencias.setBorder(BorderFactory.createTitledBorder(null, "Urgencias", TitledBorder.RIGHT, TitledBorder.DEFAULT_POSITION));
 		panelUrgencias.add(etiquetaDNIurg);
 		panelUrgencias.add(dniUrg);
 		panelUrgencias.add(etiquetaCodigo);
@@ -178,7 +171,6 @@ public class GUI_Programa extends JFrame {
 			}
 		}
 	}
-
 	private class OyenteSalir implements ActionListener {
 		public void actionPerformed(ActionEvent evento) {
 			textoContraseña.setEnabled(true);
@@ -193,25 +185,23 @@ public class GUI_Programa extends JFrame {
 			botonCantUrgencias.setEnabled(false);
 		}
 	}
-
 	private class OyenteAsignar implements ActionListener {
-	public void actionPerformed(ActionEvent evento) {
-		JOptionPane aviso=new JOptionPane();
-		try {
-			if (dniDatos.getText().isEmpty() || fechaNacimiento.getText().isEmpty() || OS.getText().isEmpty())
-				aviso.showMessageDialog(null, "Debe completar todos los datos del paciente para poder asignarle una habitación.", "", JOptionPane.WARNING_MESSAGE);
-			else {
-				char h = programa.asignarHabitacion(Integer.parseInt(dniDatos.getText()), fechaNacimiento.getText(), OS.getText());
-				dniDatos.setText(""); fechaNacimiento.setText(""); OS.setText("");
-				aviso.showMessageDialog(null, "Se ha asignado al paciente a la habitación: "+h, " Confirmación", JOptionPane.INFORMATION_MESSAGE);
+		public void actionPerformed(ActionEvent evento) {
+			JOptionPane aviso=new JOptionPane();
+			try {
+				if (dniDatos.getText().isEmpty() || fechaNacimiento.getText().isEmpty() || OS.getText().isEmpty())
+					aviso.showMessageDialog(null, "Debe completar todos los datos del paciente para poder asignarle una habitación.", "", JOptionPane.WARNING_MESSAGE);
+				else {
+					char h = programa.asignarHabitacion(Integer.parseInt(dniDatos.getText()), fechaNacimiento.getText(), OS.getText());
+					dniDatos.setText(""); fechaNacimiento.setText(""); OS.setText("");
+					aviso.showMessageDialog(null, "Se ha asignado al paciente a la habitación: "+h, " Confirmación", JOptionPane.INFORMATION_MESSAGE);
+				}
+			}
+			catch (PacienteException e) {
+				aviso.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
-		catch (PacienteException e) {
-			aviso.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-		}
-	 }
 	}
-
 	private class OyenteDesasignar implements ActionListener {
 		public void actionPerformed(ActionEvent evento) {
 			JOptionPane aviso = new JOptionPane();
@@ -222,63 +212,60 @@ public class GUI_Programa extends JFrame {
 					int dni = Integer.parseInt(dniHab.getText());
 					dniHab.setText("");
 					programa.desasignarHabitacion(dni);
-					aviso.showMessageDialog(null, "El paciente de DNI: " + dni + " ha abandonado su habitación.",
-							"Confirmación", JOptionPane.INFORMATION_MESSAGE);
+					aviso.showMessageDialog(null, "El paciente de DNI: " + dni + " ha abandonado su habitación.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 				}
 			} catch (PacienteException e) {
 				aviso.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
-
 	private class OyenteConsultar implements ActionListener {
 		public void actionPerformed(ActionEvent evento) {
-			JOptionPane mensaje = new JOptionPane();
+			JOptionPane mensaje=new JOptionPane();
 			try {
-				if (!dniHab.getText().isEmpty()) {
-					int documento = Integer.parseInt(dniHab.getText());
-					dniHab.setText("");
-					mensaje.showMessageDialog(null,
-							programa.consultarDatosPaciente(documento),
-							"Datos del paciente", JOptionPane.INFORMATION_MESSAGE);
-				} else {
+				if (dniHab.getText().equals("")) {
 					dniHab.setText("");
 					mensaje.showMessageDialog(null, "No ingresó un DNI", "Error", JOptionPane.WARNING_MESSAGE);
 				}
-			} catch (PacienteException e) {
+				else {
+					int documento=Integer.parseInt(dniHab.getText());
+					Paciente p=programa.consultarDatosPaciente(documento);
+					dniHab.setText("");
+					mensaje.showMessageDialog(null, "DNI: "+p.getDni()+"\n Fecha de nacimiento: "+p.getFechaNacimiento()+"\n Obra social: "+p.getObraSocial()+"\n Habitación: "+p.getHabitacion(), "Datos del paciente", JOptionPane.INFORMATION_MESSAGE);
+					}
+			}
+			catch (PacienteException e) {
 				dniHab.setText("");
 				mensaje.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
-
 	private class OyenteListar implements ActionListener {
 		public void actionPerformed(ActionEvent evento) {
-			JOptionPane mensaje = new JOptionPane();
+			JOptionPane mensaje=new JOptionPane();
 			try {
-				mensaje.showMessageDialog(null, "Las habitaciones vacías son: " + programa.habitacionesVacias(), "Habitaciones vacías", JOptionPane.INFORMATION_MESSAGE);
-			} catch (PacienteException e) {
-				mensaje.showMessageDialog(null, "No hay habitaciones vacías", "Habitaciones vacías",
-						JOptionPane.INFORMATION_MESSAGE);
+				PositionList<Character> listaHabitaciones=programa.habitacionesVacias();
+				String habitaciones=""+listaHabitaciones.remove(listaHabitaciones.first());
+				for (Position<Character> pos:listaHabitaciones.positions())
+					habitaciones=habitaciones+" | "+pos.element();
+				mensaje.showMessageDialog(null, "Las habitaciones vacías son:  "+habitaciones, "Habitaciones vacías", JOptionPane.INFORMATION_MESSAGE);
+			}
+			catch (EmptyListException | InvalidPositionException e) {
+				mensaje.showMessageDialog(null, "No hay habitaciones vacías", "Habitaciones vacías", JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
-	}
-
+	 }
 	private class OyenteCantidad implements ActionListener {
 		public void actionPerformed(ActionEvent evento) {
 			JOptionPane mensaje = new JOptionPane();
 			if (evento.getActionCommand().equals("cantPacientes")) {
 				char hab = String.valueOf(habitacion.getSelectedItem()).charAt(0);
-				mensaje.showMessageDialog(null, "La cantidad de pacientes en la habitación " + hab + " es: "
-						+ programa.cantPacientesHabitacion(hab), "Habitación", JOptionPane.INFORMATION_MESSAGE);
+				mensaje.showMessageDialog(null, "La cantidad de pacientes en la habitación "+hab+" es: "+programa.cantPacientesHabitacion(hab), "Cantidad pacientes", JOptionPane.INFORMATION_MESSAGE);
 			}
 			if (evento.getActionCommand().equals("cantUrgencias"))
-				mensaje.showMessageDialog(null,
-						"La cantidad de pacientes en urgencias es: " + programa.cantPacientesUrgencias(), "Urgencias",
-						JOptionPane.INFORMATION_MESSAGE);
+				mensaje.showMessageDialog(null, "La cantidad de pacientes en urgencias es: " + programa.cantPacientesUrgencias(), "Cantidad de pacientes en urgencias", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
-
 	private class OyenteUrgencias implements ActionListener {
 		public void actionPerformed(ActionEvent evento) {
 			JOptionPane mensaje = new JOptionPane();
@@ -291,18 +278,15 @@ public class GUI_Programa extends JFrame {
 						int dni = Integer.parseInt(dniUrg.getText());
 						programa.ingresarPaciente(codUrgencia.getSelectedIndex() + 1, dni);
 						dniUrg.setText("");
-						mensaje.showMessageDialog(null,
-								"El paciente de DNI: " + dni + " ingresó a la lista de urgencias.", "Confirmación",
-								JOptionPane.INFORMATION_MESSAGE);
+						mensaje.showMessageDialog(null, "El paciente de DNI: "+dni+" ingresó a la lista de urgencias.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 				if (evento.getActionCommand().equals("Atender")) {
 					int dni = programa.atenderPaciente();
-					mensaje.showMessageDialog(null, "El paciente de DNI: " + dni + " ha sido atendido.", "Confirmación",
-							JOptionPane.INFORMATION_MESSAGE);
-					;
+					mensaje.showMessageDialog(null, "El paciente de DNI: " + dni + " ha sido atendido.", "Confirmación",JOptionPane.INFORMATION_MESSAGE);
 				}
-			} catch (PacienteException e) {
+			}
+			catch (PacienteException e) {
 				mensaje.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
