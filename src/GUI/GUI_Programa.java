@@ -34,28 +34,19 @@ public class GUI_Programa extends JFrame {
 	}
 	private void armarBotones() {
 		// Creo los botones
-		botonSalir = new JButton(" Salir ");
-		botonSalir.setEnabled(false);
-		botonAsignar = new JButton("Asignar habitación");
-		botonAsignar.setEnabled(false);
-		botonDesasignar = new JButton("Desasignar habitación");
-		botonDesasignar.setEnabled(false);
-		botonDatos = new JButton("Consultar datos del paciente");
-		botonDatos.setEnabled(false);
-		botonListar = new JButton("Listar las habitaciones vacias");
-		botonListar.setEnabled(false);
+		botonSalir = new JButton(" Salir "); botonSalir.setEnabled(false);
+		botonAsignar = new JButton("Asignar habitación"); botonAsignar.setEnabled(false);
+		botonDesasignar = new JButton("Desasignar habitación"); botonDesasignar.setEnabled(false);
+		botonDatos = new JButton("Consultar datos del paciente"); botonDatos.setEnabled(false);
+		botonListar = new JButton("Listar las habitaciones vacias"); botonListar.setEnabled(false);
 		botonCantPacientes = new JButton("Cantidad de pacientes en habitación");
-		botonCantPacientes.setActionCommand("cantPacientes");
-		botonCantPacientes.setEnabled(false);
+		botonCantPacientes.setActionCommand("cantPacientes"); botonCantPacientes.setEnabled(false);
 		botonIngresar = new JButton("Ingresar paciente");
-		botonIngresar.setEnabled(false);
-		botonIngresar.setActionCommand("Ingresar");
+		botonIngresar.setActionCommand("Ingresar"); botonIngresar.setEnabled(false);
 		botonAtender = new JButton("Atender paciente");
-		botonAtender.setEnabled(false);
-		botonAtender.setActionCommand("Atender");
+		botonAtender.setActionCommand("Atender"); botonAtender.setEnabled(false);
 		botonCantUrgencias = new JButton("Cantidad de pacientes de urgencias");
-		botonCantUrgencias.setActionCommand("cantUrgencias");
-		botonCantUrgencias.setEnabled(false);
+		botonCantUrgencias.setActionCommand("cantUrgencias"); botonCantUrgencias.setEnabled(false);
 
 		// Asigno los oyentes a cada botón
 		botonSalir.addActionListener(new OyenteSalir());
@@ -84,21 +75,16 @@ public class GUI_Programa extends JFrame {
 		textoContraseña.addActionListener(new OyenteAcceso());
 
 		//Creo los campos de texto y seteo sus tamaños
-		dniHab = new JTextField();
-		dniHab.setPreferredSize(new Dimension(500, 25));
-		dniUrg = new JTextField();
-		dniUrg.setPreferredSize(new Dimension(200, 25));
-		dniDatos = new JTextField();
-		dniDatos.setPreferredSize(new Dimension(500, 25));
-		fechaNacimiento = new JTextField();
-		fechaNacimiento.setPreferredSize(new Dimension(400, 25));
-		OS = new JTextField();
-		OS.setPreferredSize(new Dimension(450, 25));
+		dniHab = new JTextField(); dniHab.setPreferredSize(new Dimension(500, 25));
+		dniUrg = new JTextField(); dniUrg.setPreferredSize(new Dimension(200, 25));
+		dniDatos = new JTextField(); dniDatos.setPreferredSize(new Dimension(500, 25));
+		fechaNacimiento = new JTextField(); fechaNacimiento.setPreferredSize(new Dimension(400, 25));
+		OS = new JTextField(); OS.setPreferredSize(new Dimension(450, 25));
 
 		//Creo las cajas de opciones y seteo las opciones
-		Character[] habitaciones = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
+		Character[] habitaciones = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
 		habitacion = new JComboBox<Character>(habitaciones);
-		Integer[] prioridades = { 1, 2, 3, 4, 5 };
+		Integer[] prioridades = {1, 2, 3, 4, 5};
 		codUrgencia = new JComboBox<Integer>(prioridades);
 	}
 	private void armarPaneles() {
@@ -110,37 +96,27 @@ public class GUI_Programa extends JFrame {
 
 		panelCentral = new JPanel();
 		panelCentral.setBorder(BorderFactory.createTitledBorder(null, "Datos Paciente", TitledBorder.CENTER, TitledBorder.DEFAULT_POSITION));
-		panelCentral.add(etiquetaDNIdatos);
-		panelCentral.add(dniDatos);
-		panelCentral.add(etiquetaFecha);
-		panelCentral.add(fechaNacimiento);
-		panelCentral.add(etiquetaOS);
-		panelCentral.add(OS);
+		panelCentral.add(etiquetaDNIdatos); panelCentral.add(dniDatos);
+		panelCentral.add(etiquetaFecha); panelCentral.add(fechaNacimiento);
+		panelCentral.add(etiquetaOS); panelCentral.add(OS);
 		panelCentral.add(botonAsignar);
 
 		panelHabitaciones = new JPanel();
 		panelHabitaciones.setLayout(new FlowLayout());
 		panelHabitaciones.setPreferredSize(new Dimension(600, 130));
 		panelHabitaciones.setBorder(BorderFactory.createTitledBorder(null, "Habitaciones", TitledBorder.LEFT, TitledBorder.DEFAULT_POSITION));
-		panelHabitaciones.add(etiquetaDNIhab);
-		panelHabitaciones.add(dniHab);
-		panelHabitaciones.add(botonDatos);
-		panelHabitaciones.add(botonDesasignar);
-		panelHabitaciones.add(botonListar);
-		panelHabitaciones.add(botonCantPacientes);
-		panelHabitaciones.add(etiquetaHabitacion);
-		panelHabitaciones.add(habitacion);
+		panelHabitaciones.add(etiquetaDNIhab); panelHabitaciones.add(dniHab);
+		panelHabitaciones.add(botonDatos); panelHabitaciones.add(botonDesasignar);
+		panelHabitaciones.add(botonListar); panelHabitaciones.add(botonCantPacientes);
+		panelHabitaciones.add(etiquetaHabitacion); panelHabitaciones.add(habitacion);
 
 		panelUrgencias = new JPanel();
 		panelUrgencias.setLayout(new FlowLayout());
 		panelUrgencias.setPreferredSize(new Dimension(600, 100));
 		panelUrgencias.setBorder(BorderFactory.createTitledBorder(null, "Urgencias", TitledBorder.RIGHT, TitledBorder.DEFAULT_POSITION));
-		panelUrgencias.add(etiquetaDNIurg);
-		panelUrgencias.add(dniUrg);
-		panelUrgencias.add(etiquetaCodigo);
-		panelUrgencias.add(codUrgencia);
-		panelUrgencias.add(botonIngresar);
-		panelUrgencias.add(botonAtender);
+		panelUrgencias.add(etiquetaDNIurg); panelUrgencias.add(dniUrg);
+		panelUrgencias.add(etiquetaCodigo); panelUrgencias.add(codUrgencia);
+		panelUrgencias.add(botonIngresar); panelUrgencias.add(botonAtender);
 		panelUrgencias.add(botonCantUrgencias);
 
 		panelControles = new JPanel();
@@ -154,18 +130,15 @@ public class GUI_Programa extends JFrame {
 		public void actionPerformed(ActionEvent evento) {
 			boolean esValida = programa.validarContraseña(evento.getActionCommand());
 			if (esValida) {
-				textoContraseña.setEnabled(false);
-				textoContraseña.setText("");
-				botonSalir.setEnabled(true);
-				botonAsignar.setEnabled(true);
-				botonDesasignar.setEnabled(true);
-				botonDatos.setEnabled(true);
-				botonListar.setEnabled(true);
-				botonCantPacientes.setEnabled(true);
-				botonIngresar.setEnabled(true);
-				botonAtender.setEnabled(true);
+				textoContraseña.setEnabled(false); textoContraseña.setText("");
+				botonSalir.setEnabled(true); botonAsignar.setEnabled(true);
+				botonDesasignar.setEnabled(true); botonDatos.setEnabled(true);
+				botonListar.setEnabled(true); botonCantPacientes.setEnabled(true);
+				botonIngresar.setEnabled(true); botonAtender.setEnabled(true);
 				botonCantUrgencias.setEnabled(true);
-			} else {
+			}
+			else {
+				textoContraseña.setText("");
 				JOptionPane aviso = new JOptionPane();
 				aviso.showMessageDialog(null, "La contraseña es invalida", "Error", JOptionPane.ERROR_MESSAGE);
 			}
@@ -173,16 +146,11 @@ public class GUI_Programa extends JFrame {
 	}
 	private class OyenteSalir implements ActionListener {
 		public void actionPerformed(ActionEvent evento) {
-			textoContraseña.setEnabled(true);
-			botonSalir.setEnabled(false);
-			botonAsignar.setEnabled(false);
-			botonDesasignar.setEnabled(false);
-			botonDatos.setEnabled(false);
-			botonListar.setEnabled(false);
-			botonCantPacientes.setEnabled(false);
-			botonIngresar.setEnabled(false);
-			botonAtender.setEnabled(false);
-			botonCantUrgencias.setEnabled(false);
+			textoContraseña.setEnabled(true); botonSalir.setEnabled(false);
+			botonAsignar.setEnabled(false); botonDesasignar.setEnabled(false);
+			botonDatos.setEnabled(false); botonListar.setEnabled(false);
+			botonCantPacientes.setEnabled(false); botonIngresar.setEnabled(false);
+			botonAtender.setEnabled(false); botonCantUrgencias.setEnabled(false);
 		}
 	}
 	private class OyenteAsignar implements ActionListener {
@@ -214,7 +182,8 @@ public class GUI_Programa extends JFrame {
 					programa.desasignarHabitacion(dni);
 					aviso.showMessageDialog(null, "El paciente de DNI: " + dni + " ha abandonado su habitación.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
 				}
-			} catch (PacienteException e) {
+			}
+			catch (PacienteException e) {
 				aviso.showMessageDialog(null, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
@@ -274,7 +243,8 @@ public class GUI_Programa extends JFrame {
 					if (dniUrg.getText().equals("")) {
 						dniUrg.setText("");
 						mensaje.showMessageDialog(null, "No ingresó un DNI", "Error", JOptionPane.WARNING_MESSAGE);
-					} else {
+					}
+					else {
 						int dni = Integer.parseInt(dniUrg.getText());
 						programa.ingresarPaciente(codUrgencia.getSelectedIndex() + 1, dni);
 						dniUrg.setText("");
