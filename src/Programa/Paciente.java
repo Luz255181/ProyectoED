@@ -20,12 +20,12 @@ public class Paciente {
 	 * @param fecha Fecha de nacimiento del Paciente.
 	 * @param obra Obra Social de Paciente.
 	 */
-	public Paciente(int dni, String fecha, String obra)
+	public Paciente(int dni, String fecha, String obra,char hab)
 	{
 		DNI = dni;
 		fechaNacimiento = fecha;
 		OS = obra;
-		habitacion = '@';
+		habitacion = hab;
 	}
 	
 	//Comandos

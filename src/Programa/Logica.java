@@ -50,36 +50,13 @@ public class Logica {
 	 * @return Retorna la letra de la habitación que se le asigno al paciente.
 	 * @throws PacienteException Si los datos ingresado del paciente son invalidos.
 	 */
-	public char asignarHabitacion(int DNI, String fecha, String obra) throws PacienteException {
+	public void asignarHabitacion(int DNI, String fecha, String obra, char hab) throws PacienteException {
 		try {
 			if(pacientes.get(DNI) != null) {
 				throw new PacienteException("Ya se encuentra hospedado un paciente con el DNI ingresado.");
 			}
-			Paciente p = new Paciente(DNI,fecha, obra);
-			switch(p.getDni()%10) {
-				case 0: p.setHabitacion('a');
-			break;
-				case 1: p.setHabitacion('b');
-			break;
-				case 2: p.setHabitacion('c');
-			break;
-				case 3: p.setHabitacion('d');
-			break;
-				case 4: p.setHabitacion('e');
-			break;
-				case 5: p.setHabitacion('f');
-			break;
-				case 6: p.setHabitacion('g');
-			break;
-				case 7: p.setHabitacion('h');
-			break;
-				case 8: p.setHabitacion('i');
-			break;
-				case 9: p.setHabitacion('j');
-			break;
-			}
-			pacientes.put(p.getDni(), p);
-			return p.getHabitacion();
+			Paciente p = new Paciente(DNI,fecha, obra,hab);
+			pacientes.put(DNI, p);
 		}
 		catch (InvalidKeyException e) {
 			throw new PacienteException("Los datos del paciente ingresado no son validos.");

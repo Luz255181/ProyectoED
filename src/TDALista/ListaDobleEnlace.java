@@ -55,39 +55,13 @@ public class ListaDobleEnlace<E> implements PositionList<E>
 	public Position<E> next(Position<E> p) throws InvalidPositionException, BoundaryViolationException 
 	{
 		DNodo<E> pos = checkPosition(p);
-		if(pos.equals(tailer.getPrev()))
-			throw new BoundaryViolationException("No existe siguiente al ultimo");
-		boolean encontre = false;
-		DNodo<E> aux = header.getNext();
-		while(aux!= tailer && !encontre)
-		{
-			if(aux.equals(pos))
-				encontre = true;
-			else
-				aux = aux.getNext();
-		}
-		if(!encontre)
-			throw new InvalidPositionException("La posicion no pertenece a la lista");
-		return aux.getNext();
+		return pos.getNext();
 	}
 
 	public Position<E> prev(Position<E> p) throws InvalidPositionException, BoundaryViolationException
 	{
 		DNodo<E> pos = checkPosition(p);
-		if(pos.equals(header.getNext()))
-			throw new BoundaryViolationException("No existe anterior al primero");
-		boolean encontre = false;
-		DNodo<E> aux = header.getNext();
-		while(aux!= tailer && !encontre)
-		{
-			if(aux.equals(pos))
-				encontre = true;
-			else
-				aux = aux.getNext();
-		}
-		if(!encontre)
-			throw new InvalidPositionException("La posicion no pertenece a la lista");
-		return aux.getPrev();
+		return pos.getPrev();
 	}
 
 	public void addFirst(E element) 
@@ -109,57 +83,21 @@ public class ListaDobleEnlace<E> implements PositionList<E>
 	public void addAfter(Position<E> p, E element) throws InvalidPositionException 
 	{
 		DNodo<E> pos = checkPosition(p);
-		if(pos.equals(tailer.getPrev()))
-			addLast(element);
-		else
-		{
-			boolean encontre = false;
-			DNodo<E> aux = header.getNext();
-			while(aux != tailer && !encontre)
-			{
-				if(aux.equals(pos))
-					encontre = true;
-				else
-					aux = aux.getNext();
-			}
-			if(!encontre)
-				throw new InvalidPositionException("La posicion no pertenece a la lista");
-			else
-			{
-				DNodo<E> nuevo = new DNodo<E>(element,aux.getNext(),aux);
-				size++;
-				aux.getNext().setPrev(nuevo);
-				aux.setNext(nuevo);
-			}
+		DNodo<E> next = pos.getNext();
+		DNodo<E> nuevo = new DNodo<E>(element);
+		nuevo.setPrev(pos);
+		nuevo.setNext(next);
+		size++;
 		}
-	}
 
 	public void addBefore(Position<E> p, E element) throws InvalidPositionException 
 	{
 		DNodo<E> pos = checkPosition(p);
-		if(pos.equals(header.getNext()))
-			addFirst(element);
-		else
-		{
-			boolean encontre = false;
-			DNodo<E> aux = header.getNext();
-			while(aux != tailer && !encontre)
-			{
-				if(aux.equals(pos))
-					encontre = true;
-				else
-					aux = aux.getNext();
-			}
-			if(!encontre)
-				throw new InvalidPositionException("La posicion no pertenece a la lista");
-			else
-			{
-				DNodo<E> nuevo = new DNodo<E>(element,aux,aux.getPrev());
-				size++;
-				aux.getPrev().setNext(nuevo);
-				aux.setPrev(nuevo);
-			}
-		}
+		DNodo<E> prev = pos.getPrev();
+		DNodo<E> nuevo = new DNodo<E>(element);
+		nuevo.setPrev(prev);
+		nuevo.setNext(pos);
+		size++;
 	}
 
 	public E remove(Position<E> p) throws InvalidPositionException 
@@ -250,8 +188,15 @@ public class ListaDobleEnlace<E> implements PositionList<E>
 
 	private DNodo<E> checkPosition(Position<E> p) throws InvalidPositionException
 	{
-		if(p == null)
+		if(p == null|| p == header || p == tailer)
 			throw new InvalidPositionException("Posicion Invalida");
+		try
+		{
 		return (DNodo<E>)p;
+		}
+		catch (ClassCastException e)
+		{
+			throw new InvalidPositionException("Posicion Invalida");
+		}
 	}
 }
