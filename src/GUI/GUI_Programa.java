@@ -11,17 +11,17 @@ public class GUI_Programa extends JFrame {
 	private JButton botonAsignar, botonDesasignar, botonDatos, botonListar, botonCantPacientes;
 	private JButton botonIngresar, botonAtender, botonCantUrgencias, botonSalir;
 	private JLabel etiquetaContraseña, etiquetaDNIhab, etiquetaDNIurg, etiquetaDNIdatos;
-	private JLabel etiquetaFecha, etiquetaOS, etiquetaHabitacion, etiquetaCodigo;
+	private JLabel etiquetaFecha, etiquetaOS, etiquetaHabDatos, etiquetaHabAsignar, etiquetaCodigo;
 	private JPasswordField textoContraseña;
 	private JTextField dniHab, dniUrg, dniDatos, fechaNacimiento, OS;
-	private JComboBox<Character> habitacion;
+	private JComboBox<Character> habitacionAsignar, habitacionDatos;
 	private JComboBox<Integer> codUrgencia;
 	private JPanel panelIngreso, panelControles, panelHabitaciones, panelUrgencias, panelCentral;
 	private Logica programa;
 
 	public GUI_Programa() {
 		super("Control sala de urgencias");
-		setSize(new Dimension(600, 450));
+		setSize(new Dimension(600, 475));
 		setLayout(new BorderLayout());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -67,7 +67,8 @@ public class GUI_Programa extends JFrame {
 		etiquetaDNIdatos = new JLabel("DNI: ");
 		etiquetaFecha = new JLabel("Fecha de nacimiento: ");
 		etiquetaOS = new JLabel("Obra social: ");
-		etiquetaHabitacion = new JLabel("Habitación: ");
+		etiquetaHabDatos = new JLabel("Habitación: ");
+		etiquetaHabAsignar=new JLabel("Habitacón: ");
 		etiquetaCodigo = new JLabel("Código de urgencia: ");
 
 		//Creo el campo de contraseña y le agrego su oyente
@@ -82,8 +83,10 @@ public class GUI_Programa extends JFrame {
 		OS = new JTextField(); OS.setPreferredSize(new Dimension(450, 25));
 
 		//Creo las cajas de opciones y seteo las opciones
-		Character[] habitaciones = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
-		habitacion = new JComboBox<Character>(habitaciones);
+		Character [] habitaciones= {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+		habitacionDatos=new JComboBox<Character>(habitaciones);
+		habitacionAsignar=new JComboBox<Character>(habitaciones);
+		habitacionAsignar.setPreferredSize(new Dimension(460, 25));
 		Integer[] prioridades = {1, 2, 3, 4, 5};
 		codUrgencia = new JComboBox<Integer>(prioridades);
 	}
@@ -108,7 +111,7 @@ public class GUI_Programa extends JFrame {
 		panelHabitaciones.add(etiquetaDNIhab); panelHabitaciones.add(dniHab);
 		panelHabitaciones.add(botonDatos); panelHabitaciones.add(botonDesasignar);
 		panelHabitaciones.add(botonListar); panelHabitaciones.add(botonCantPacientes);
-		panelHabitaciones.add(etiquetaHabitacion); panelHabitaciones.add(habitacion);
+		panelHabitaciones.add(etiquetaHabDatos); panelHabitaciones.add(habitacionAsignar);
 
 		panelUrgencias = new JPanel();
 		panelUrgencias.setLayout(new FlowLayout());
@@ -160,7 +163,8 @@ public class GUI_Programa extends JFrame {
 				if (dniDatos.getText().isEmpty() || fechaNacimiento.getText().isEmpty() || OS.getText().isEmpty())
 					aviso.showMessageDialog(null, "Debe completar todos los datos del paciente para poder asignarle una habitación.", "", JOptionPane.WARNING_MESSAGE);
 				else {
-					char h = programa.asignarHabitacion(Integer.parseInt(dniDatos.getText()), fechaNacimiento.getText(), OS.getText());
+					char h=String.valueOf(habitacionAsignar.getSelectedItem()).charAt(0);
+					programa.asignarHabitacion(Integer.parseInt(dniDatos.getText()), fechaNacimiento.getText(), OS.getText(), h);
 					dniDatos.setText(""); fechaNacimiento.setText(""); OS.setText("");
 					aviso.showMessageDialog(null, "Se ha asignado al paciente a la habitación: "+h, " Confirmación", JOptionPane.INFORMATION_MESSAGE);
 				}
@@ -228,7 +232,7 @@ public class GUI_Programa extends JFrame {
 		public void actionPerformed(ActionEvent evento) {
 			JOptionPane mensaje = new JOptionPane();
 			if (evento.getActionCommand().equals("cantPacientes")) {
-				char hab = String.valueOf(habitacion.getSelectedItem()).charAt(0);
+				char hab = String.valueOf(habitacionAsignar.getSelectedItem()).charAt(0);
 				mensaje.showMessageDialog(null, "La cantidad de pacientes en la habitación "+hab+" es: "+programa.cantPacientesHabitacion(hab), "Cantidad pacientes", JOptionPane.INFORMATION_MESSAGE);
 			}
 			if (evento.getActionCommand().equals("cantUrgencias"))

@@ -1,4 +1,4 @@
-package TDAColaConPrioridad;
+package TDAColaCP;
 import Auxiliar.EmptyPriorityQueueException;
 import Auxiliar.InvalidKeyException;
 

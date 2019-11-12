@@ -2,7 +2,7 @@ package Programa;
 import java.util.Iterator;
 import Auxiliar.*;
 import TDACola.*;
-import TDAColaConPrioridad.*;
+import TDAColaCP.*;
 import TDALista.*;
 import TDAMapeo.*;
 import TDAPila.*;

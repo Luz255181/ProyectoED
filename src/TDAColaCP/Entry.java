@@ -1,4 +1,4 @@
-package TDAColaConPrioridad;
+package TDAColaCP;
 
 public interface Entry<K, V> {
   /**

@@ -1,4 +1,4 @@
-package TDAColaConPrioridad;
+package TDAColaCP;
 import java.util.Comparator;
 
 public class Comparador<K extends Comparable<K>> implements Comparator<K> {

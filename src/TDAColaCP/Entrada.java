@@ -1,4 +1,4 @@
-package TDAColaConPrioridad;
+package TDAColaCP;
 
 public class Entrada<K, V> implements Entry<K, V> {
   protected K clave;

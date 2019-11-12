@@ -1,4 +1,4 @@
-package TDAColaConPrioridad;
+package TDAColaCP;
 import java.util.Comparator;
 import Auxiliar.EmptyPriorityQueueException;
 import Auxiliar.InvalidKeyException;
