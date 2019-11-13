@@ -102,6 +102,7 @@ public class GUI_Programa extends JFrame {
 		panelCentral.add(etiquetaDNIdatos); panelCentral.add(dniDatos);
 		panelCentral.add(etiquetaFecha); panelCentral.add(fechaNacimiento);
 		panelCentral.add(etiquetaOS); panelCentral.add(OS);
+		panelCentral.add(etiquetaHabAsignar); panelCentral.add(habitacionAsignar);
 		panelCentral.add(botonAsignar);
 
 		panelHabitaciones = new JPanel();
@@ -111,7 +112,7 @@ public class GUI_Programa extends JFrame {
 		panelHabitaciones.add(etiquetaDNIhab); panelHabitaciones.add(dniHab);
 		panelHabitaciones.add(botonDatos); panelHabitaciones.add(botonDesasignar);
 		panelHabitaciones.add(botonListar); panelHabitaciones.add(botonCantPacientes);
-		panelHabitaciones.add(etiquetaHabDatos); panelHabitaciones.add(habitacionAsignar);
+		panelHabitaciones.add(etiquetaHabDatos); panelHabitaciones.add(habitacionDatos);
 
 		panelUrgencias = new JPanel();
 		panelUrgencias.setLayout(new FlowLayout());
