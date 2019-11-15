@@ -1,16 +1,21 @@
 package TDAMapeo;
 
-public interface Entry<K,V> 
-{
-	/**
-	 * retorna la clave de la entrada
-	 * @return clave de la entrada
-	 */
-	public K getKey();
-	
-	/**
-	 * retorna el valor de la entrada
-	 * @return valor de la entrada
-	 */
-	public V getValue();
+/**
+ * Interafaz Entry que brinda los métodos que puede realizar una entrada.
+ * @author Luz  Cabral &Gonzalo  Perez
+ *
+ * @param <K> Es el tipo de la clave de la entrada.
+ * @param <V> Es el tipo del valor de la entrada.
+ */
+public interface Entry<K, V> {
+  /**
+   * Consulta la clave de la entrada.
+   * @return Retorna la clave de la entrada.
+   */
+  public K getKey();
+  /**
+   * Consulta el valor de la entrada.
+   * @return Retorna el valor de la entrada.
+   */
+  public V getValue();
 }

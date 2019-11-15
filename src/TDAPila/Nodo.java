@@ -1,79 +1,61 @@
 package TDAPila;
-
 /**
- * Clase que implementa un nodo de una pila.
- * @author Maria Luz Cabral y Gonzalo Perez.
+ * Clase que representa a un nodo.
+ * @author Luz  Cabral & Gonzalo  Perez
  *
+ * @param <E>
  */
-public class Nodo<E> 
-{
-	protected E dato; //dato del nodo.
-	protected Nodo<E> sig; //nodo siguiente.
-	
-	/*
-	 * Crea un nodo vacio.
-	 */
-	public Nodo() 
-	{
-		dato = null;
-		sig = null;
-	}
-	
-	/*
-	 * Crea un nodo con dato.
-	 * @param data Dato del nodo.
-	 */
-	public Nodo(E data)
-	{
-		dato = data;
-		sig = null;
-	}
-	
-	/*
-	 * Crea un nodo con dato y siguiente.
-	 * @param data Dato del Nodo.
-	 * @param siguiente Nodo siguiente.
-	 */
-	public Nodo(E data, Nodo<E> siguiente)
-	{
-		dato = data;
-		sig = siguiente;
-		
-	}
-	
-	/*
-	 * Devulve el dato del Nodo.
-	 * @return dato del nodo.
-	 */
-	public E getElement()
-	{
-		return dato;
-	}
-	
-	/*
-	 * Setea el elemento.
-	 * @param data Dato del Nodo'
-	 */
-	public void setElement(E data)
-	{
-		dato = data;
-	}
-	
-	/*
-	 * Devuelve el nodo siguiente.
-	 * @return Nodo siguiente.
-	 */
-	public Nodo<E> getNext()
-	{
-		return sig;
-	}
-	
-	/*
-	 * Setea el nodo siguiente.
-	 * @param siguiente Nodo siguiente.
-	 */
-	public void setNext(Nodo<E> siguiente)
-	{
-		sig = siguiente;
-	}
+public class Nodo<E> {
+  private E elemento;
+  private Nodo<E> siguiente;
+  
+  //Constructor
+  /**
+   * Crea un nuevo nodo inicializando el elemento con el elemento pasado por parámetro y 
+   * el nodo siguiente con el nodo pasado por parámetro.
+   * @param elem Es el elemento asociado al nodo.
+   * @param sig Es el nodo siguiente del nodo referenciado.
+   */
+  public Nodo(E elem, Nodo<E> sig) {
+    elemento=elem;
+    siguiente=sig;
+  }
+  /**
+   * Crea un nuevo nodo inicilizando el elemento con el elemento pasado por parámetro y
+   * el nodo siguiente con valor nulo.
+   * @param elem Es el elemento asociado al nodo.
+   */
+  public Nodo(E elem) {
+    this(elem, null);
+  }
+  //Comandos
+  /**
+   * Modifica el elemento que se encuentra dentro del nodo por el elemento pasado por parámetro
+   * @param elem Es el nuevo elemento que va a estar dentro del nodo.
+   */
+  public void setElemento(E elem) {
+    elemento=elem;
+  }
+  /**
+   * Modifica la referencia del nodo siguiente por la referencia del nodo pasado por parámetro.
+   * @param sig Es la referencia del nodo que va a ser el nuevo siguiente del nodo.
+   */
+  public void setSiguiente(Nodo<E> sig) {
+	siguiente=sig;
+  }
+  //Consultas
+  /**
+   * Consulta el elemento que se encuentra dentro del nodo y lo retorna.
+   * @return Retorna el elemento que se encuentra dentro del nodo.
+   */
+  public E getElemento() {
+	return elemento;
+  }
+  /**
+   * Consulta cual es el nodo siguiente del nodo actual
+   * @return El nodo siguiente al actual.
+   */
+  public Nodo<E> getSiguiente() {
+    return siguiente;
+  }
 }

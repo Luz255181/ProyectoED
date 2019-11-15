@@ -12,46 +12,45 @@ public class PilaEnlazada<E> implements Stack<E>
 	protected int size;
 	
 	/**
-	 * Crea una pila vacia.
+	 * Crea una pila vacía, el nodo head se inicializa null y el tamaño se inicializa en 0.
 	 */
 	public PilaEnlazada()
 	{
-		top = new Nodo<E>();
+		top = null;
 		size = 0;
 	}
-
+	@Override
 	public int size() 
 	{
 		return size;
 	}
-
+	@Override
 	public boolean isEmpty() 
 	{
 		return size == 0;
 	}
-
+	@Override
 	public E top() throws EmptyStackException 
 	{
 		if (size == 0)
 			throw new EmptyStackException("Pila Vacia");
-		return top.getElement();
+		return top.getElemento();
 	}
-
+	@Override
 	public void push(E element) 
 	{
 		Nodo<E> nuevo = new Nodo<E>(element,top);
 		top = nuevo;
 		size++;
 	}
-
+	@Override
 	public E pop() throws EmptyStackException 
 	{
 		if(size == 0)
 			throw new EmptyStackException("Pila vacia");
 		size--;
-		E aux = top.getElement();
-		top = top.getNext();
+		E aux = top.getElemento();
+		top = top.getSiguiente();
 		return aux;
 	}
-
 }

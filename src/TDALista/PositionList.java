@@ -1,6 +1,5 @@
 package TDALista;
 import java.util.Iterator;
-
 import Auxiliar.BoundaryViolationException;
 import Auxiliar.EmptyListException;
 import Auxiliar.InvalidPositionException;
@@ -10,8 +9,7 @@ import Auxiliar.InvalidPositionException;
  * @author Cátedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computación, UNS.
  */
 
-public interface PositionList<E> extends Iterable<E>
-{
+public interface PositionList<E> extends Iterable<E> {
 	/**
 	 * Consulta la cantidad de elementos de la lista.
 	 * @return Cantidad de elementos de la lista.
@@ -94,7 +92,6 @@ public interface PositionList<E> extends Iterable<E>
 	public E remove(Position<E> p) throws InvalidPositionException;
 
 	/**
-	
 	 * Establece el elemento en la posición pasados por parámetro. Reemplaza el elemento que se encontraba anteriormente en esa posición y devuelve el elemento anterior.
 	 * @param p Posición a establecer el elemento pasado por parámetro.
 	 * @param element Elemento a establecer en la posición pasada por parámetro.

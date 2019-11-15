@@ -14,7 +14,7 @@ public class ColaCircular<E> implements Queue<E>
 	protected E[] arreglo;
 	
 	/**
-	 *  Crea una cola vacia.
+	 * Crea una cola vacia.
 	 */
 	public ColaCircular()
 	{
@@ -23,53 +23,41 @@ public class ColaCircular<E> implements Queue<E>
 		tail = 0;
 		arreglo = (E[]) new Object[100];
 	}
-	
+	@Override
 	public int size() 
 	{
 		return size;
 	}
-
+	@Override
 	public boolean isEmpty() 
 	{
 		return size == 0;
 	}
-
+	@Override
 	public E front() throws EmptyQueueException 
 	{
 		if(size == 0)
 			throw new EmptyQueueException("Cola Vacia");
 		return arreglo[head];
 	}
-
-	public void enqueue(E element) 
-	{
-		
-			if(head == tail && !isEmpty())
-			{
-				resize();
-			}
-			arreglo[tail] = element;
-			size++;
-			tail = (tail + 1)% arreglo.length;
-	}
-	
-	private void resize()
-	{
-		E[] aux = (E[]) new Object[size];
-		for(int i = 0; i<arreglo.length; i++)
-		{
-			aux[i] = arreglo[head];
-			head = (head+1)%arreglo.length;
+	@Override
+	  public void enqueue(E elem) {
+		int cantOcupados=size;
+		if (size==(arreglo.length-1)) {
+		   E[] aux=(E[])new Object[arreglo.length*2];
+		   for (int i=0; i<cantOcupados; i++) {
+			   aux[i]=arreglo[head];
+			   head=(head+1)%arreglo.length;
+		   }
+		   tail=cantOcupados; //rabo=size();
+		   head=0;
+		   arreglo=aux;
 		}
-		arreglo = (E[]) new Object[size*2];
-		for(int i = 0; i<aux.length; i++)
-		{
-			arreglo[i] = aux[i];
-		}
-		head = 0;
-		tail = size;
-	}
-
+		arreglo[tail]=elem;
+		tail=(tail+1)%arreglo.length;
+		size++;
+	  }
+	@Override
 	public E dequeue() throws EmptyQueueException 
 	{
 		if(size == 0)

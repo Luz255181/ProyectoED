@@ -3,12 +3,24 @@ import java.util.Comparator;
 import Auxiliar.EmptyPriorityQueueException;
 import Auxiliar.InvalidKeyException;
 
+/**
+ * Clase Heap que implementa una cola con prioridad 
+ * @author Gonzalo  Perez
+ *
+ * @param <K> Es el tipo de la prioridad de la cola con prioridad.
+ * @param <V> Es el tipo del valor asociado a la prioridad.
+ */
 public class Heap<K, V> implements PriorityQueue<K, V> {
   protected Entrada<K, V> [] arreglo;
   protected Comparator<K> comp;
   protected int tamaño;
   
   //Constructor
+  /**
+   * Crea un heap con capacidad inicial para 100 elementos, incializa el tamaño en 0 y 
+   * setea el valor de comp con el compardor pasado por parámetro.
+   * @param comparador Es el comparador que se va a utilizar en el heap.
+   */
   public Heap(Comparator<K> comparador) {
 	arreglo=(Entrada<K, V> [])new Entrada[100];
 	comp=comparador;
@@ -26,26 +38,26 @@ public class Heap<K, V> implements PriorityQueue<K, V> {
 	if (prioridad==null)
 		throw new InvalidKeyException("La clave es invalida.");
 	Entrada<K, V> [] arregloAux;
-	Entrada<K, V> nuevaEntrada, aux;
-	nuevaEntrada=new Entrada<K, V>(prioridad, valor);
-	if (tamaño==(arreglo.length-1)) {
+	Entrada<K, V> aux;
+	if (tamaño==arreglo.length-1) {
 		arregloAux=(Entrada<K, V>[]) new Entrada[arreglo.length*2];
 		for (int r=0; r<arreglo.length; r++)
 			arregloAux[r]=arreglo[r];
 		arreglo=arregloAux;
 	}
+	Entrada<K, V> nuevaEntrada=new Entrada<K, V>(prioridad, valor);
 	tamaño++;
 	arreglo[tamaño]=nuevaEntrada;
 	int i=tamaño;
 	boolean seguir=true;
 	while (i>1 && seguir) {
-		  if (comp.compare(arreglo[i].getKey(), arreglo[i/2].getKey())<0) {
-			  aux=arreglo[i];
-			  arreglo[i]=arreglo[i/2];
-			  arreglo[i/2]=aux;
-			  i=i/2;
-		  }
-		  else seguir=false;
+		if (comp.compare(arreglo[i].getKey(), arreglo[i/2].getKey())<0) {
+			aux=arreglo[i];
+			arreglo[i]=arreglo[i/2];
+			arreglo[i/2]=aux;
+			i=i/2;
+		}
+		else seguir=false;
 	}
 	return nuevaEntrada;
   }
