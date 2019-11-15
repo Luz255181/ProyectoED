@@ -83,7 +83,7 @@ public class GUI_Programa extends JFrame {
 		OS = new JTextField(); OS.setPreferredSize(new Dimension(450, 25));
 
 		//Creo las cajas de opciones y seteo las opciones
-		Character [] habitaciones= {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+		Character [] habitaciones= {' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
 		habitacionDatos=new JComboBox<Character>(habitaciones);
 		habitacionAsignar=new JComboBox<Character>(habitaciones);
 		habitacionAsignar.setPreferredSize(new Dimension(460, 25));
@@ -167,6 +167,7 @@ public class GUI_Programa extends JFrame {
 					char h=String.valueOf(habitacionAsignar.getSelectedItem()).charAt(0);
 					programa.asignarHabitacion(Integer.parseInt(dniDatos.getText()), fechaNacimiento.getText(), OS.getText(), h);
 					dniDatos.setText(""); fechaNacimiento.setText(""); OS.setText("");
+					habitacionAsignar.setSelectedIndex(0);
 					aviso.showMessageDialog(null, "Se ha asignado al paciente a la habitación: "+h, " Confirmación", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
@@ -233,7 +234,8 @@ public class GUI_Programa extends JFrame {
 		public void actionPerformed(ActionEvent evento) {
 			JOptionPane mensaje = new JOptionPane();
 			if (evento.getActionCommand().equals("cantPacientes")) {
-				char hab = String.valueOf(habitacionAsignar.getSelectedItem()).charAt(0);
+				char hab = String.valueOf(habitacionDatos.getSelectedItem()).charAt(0);
+				habitacionDatos.setSelectedIndex(0);
 				mensaje.showMessageDialog(null, "La cantidad de pacientes en la habitación "+hab+" es: "+programa.cantPacientesHabitacion(hab), "Cantidad pacientes", JOptionPane.INFORMATION_MESSAGE);
 			}
 			if (evento.getActionCommand().equals("cantUrgencias"))

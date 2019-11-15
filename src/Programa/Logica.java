@@ -13,7 +13,7 @@ import TDAPila.*;
  *
  */
 public class Logica {
-	protected MapeoHashAbierto<Integer,Paciente> pacientes;
+	protected MapeoConHashAbierto<Integer,Paciente> pacientes;
 	protected PriorityQueue<Integer, Integer> urgencias;
 	
 	//Constructor
@@ -21,7 +21,7 @@ public class Logica {
 	 * Inicializa el sistema de registro de habitaciones y el sistema de urgencias ambos vacíos.
 	 */
 	public Logica() {
-		pacientes = new MapeoHashAbierto<Integer,Paciente>();
+		pacientes = new MapeoConHashAbierto<Integer,Paciente>();
 		urgencias = new Heap<Integer, Integer>(new Comparador<Integer>());
 	}
 	//Comandos
@@ -101,7 +101,7 @@ public class Logica {
 	 * @return Retorna una lista que contiene las letras de las habitaciones que están vacias.
 	 */
 	public PositionList<Character> habitacionesVacias() {
-		PositionList<Character> vacias= new ListaDobleEnlace<Character>();
+		PositionList<Character> vacias= new ListaDoblementeEnlazada<Character>();
 		boolean estaVacia;
 		for (char hab='a'; hab<='j'; hab++) {
 			estaVacia=true;
