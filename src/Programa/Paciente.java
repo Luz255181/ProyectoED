@@ -15,13 +15,13 @@ public class Paciente {
 	protected char habitacion;
 	
 	/**
-	 * Crea un paciente con DNI, Obra Social y Fecha de Nacimiento.
-	 * @param dni DNI del Paciente.
-	 * @param fecha Fecha de nacimiento del Paciente.
-	 * @param obra Obra Social de Paciente.
+	 * Crea un paciente con DNI, fecha de nacimiento, obra social y la habitación asignada.
+	 * @param dni Es el dni del paciente.
+	 * @param fecha Es la fecha de nacimiento del paciente.
+	 * @param obra Es la obra social del paciente.
+	 * @param hab Es la habitación que se le asignó al paciente.
 	 */
-	public Paciente(int dni, String fecha, String obra,char hab)
-	{
+	public Paciente(int dni, String fecha, String obra,char hab) {
 		DNI = dni;
 		fechaNacimiento = fecha;
 		OS = obra;

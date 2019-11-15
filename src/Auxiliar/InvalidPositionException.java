@@ -3,7 +3,7 @@ package Auxiliar;
 /**
  * Clase InvalidPositionException que extiende de la clase Exception.
  * Modela la excepción que se produce ante una posición que es invalida.
- * @author Gonzalo  Perez
+ * @author Luz  Cabral & Gonzalo  Perez
  *
  */
 public class InvalidPositionException extends Exception {

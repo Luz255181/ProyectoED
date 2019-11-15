@@ -4,16 +4,21 @@ import Auxiliar.BoundaryViolationException;
 import Auxiliar.EmptyListException;
 import Auxiliar.InvalidPositionException;
 
+/**
+ * Clase que implementa la interfaz PositionList.
+ * Modela uns lista doblemente enlazada con nodos centinelas.
+ * @author Luz  Cabral & Gonzalo  Perez
+ *
+ * @param <E> Es el tipo de los elementos dentro de la lista.
+ */
 public class ListaDoblementeEnlazada<E> implements PositionList<E> {
-  /**
-   * header Es el nodo centinela que señala el comienzo de la lista.
-   * trailer Es el nodo centinela que señala el final de la lista.
-   * numElem Representa la cantidad de nodos que se encuentran dentro de la lista.
-   */
   protected int numElem;
   protected Nodo<E> header, trailer; //Centinelas o celdas de encabezamiento
   
   //Constructor
+  /**
+   * Crea una lista doblemente enlazada vacía que inicialmente contiene a los nodos centinelas.
+   */
   public ListaDoblementeEnlazada() {
 	numElem=0;
 	trailer=new Nodo<E>(null, null, null);

@@ -9,7 +9,7 @@ import TDAPila.*;
 
 /**
  * Clase que modela las funciones que brinda el sistema.
- * @author Luz Cabral & Gonzalo Perez
+ * @author Luz  Cabral & Gonzalo  Perez
  *
  */
 public class Logica {
@@ -43,12 +43,13 @@ public class Logica {
 	}
 	//Consultas
 	/**
-	 * Ingresa un paciente al sistema y le asigna una habitacion.
-	 * @param DNI Es el DNI del paciente.
-	 * @param fecha Es la fecha de nacimiento del paciente.
-	 * @param obra Es la obra social del paciente.
-	 * @return Retorna la letra de la habitación que se le asigno al paciente.
-	 * @throws PacienteException Si los datos ingresado del paciente son invalidos.
+	 * Ingresa un paciente al sistema y le asigna una habitación.
+	 * @param DNI Es el dni del paciente a ingresar al sistema.
+	 * @param fecha Es la fecha de nacimiento del paciente a ingresar al sistema.
+	 * @param obra Es la obra social del paciente a ingresar al sistema.
+	 * @param hab Es la habitación a asignarle al paciente.
+	 * @throws PacienteException Si el paciente ya se encuentra en el sistema o 
+	 * 							 los datos ingresado son invalidos.
 	 */
 	public void asignarHabitacion(int DNI, String fecha, String obra, char hab) throws PacienteException {
 		try {

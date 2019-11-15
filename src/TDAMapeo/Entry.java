@@ -2,7 +2,7 @@ package TDAMapeo;
 
 /**
  * Interafaz Entry que brinda los métodos que puede realizar una entrada.
- * @author Luz  Cabral &Gonzalo  Perez
+ * @author Luz  Cabral & Gonzalo  Perez
  *
  * @param <K> Es el tipo de la clave de la entrada.
  * @param <V> Es el tipo del valor de la entrada.

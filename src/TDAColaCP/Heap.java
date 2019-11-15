@@ -5,7 +5,7 @@ import Auxiliar.InvalidKeyException;
 
 /**
  * Clase Heap que implementa una cola con prioridad 
- * @author Gonzalo  Perez
+ * @author Luz  Cabral & Gonzalo  Perez
  *
  * @param <K> Es el tipo de la prioridad de la cola con prioridad.
  * @param <V> Es el tipo del valor asociado a la prioridad.

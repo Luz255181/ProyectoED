@@ -3,7 +3,7 @@ package Auxiliar;
 /**
  * Clase EmptyListException que extiende de la clase Exception.
  * Modela la excepción que se produce ante una lista vacía.
- * @author Gonzalo  Perez
+ * @author Luz  Cabral & Gonzalo  Perez
  *
  */
 public class EmptyListException extends Exception {

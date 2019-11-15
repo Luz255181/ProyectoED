@@ -3,7 +3,7 @@ package TDAPila;
  * Clase que representa a un nodo.
  * @author Luz  Cabral & Gonzalo  Perez
  *
- * @param <E>
+ * @param <E> Es el tipo de los elementos dentro del nodo.
  */
 public class Nodo<E> {
   private E elemento;

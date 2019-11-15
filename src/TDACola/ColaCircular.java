@@ -3,7 +3,7 @@ import Auxiliar.*;
 
 /**
  * Clase que implementa una cola con arreglo circular.
- * @author Maria Luz Cabral y Gonzalo Perez.
+ * @author Maria Luz Cabral & Gonzalo Perez.
  *
  */
 public class ColaCircular<E> implements Queue<E>
@@ -41,17 +41,17 @@ public class ColaCircular<E> implements Queue<E>
 		return arreglo[head];
 	}
 	@Override
-	  public void enqueue(E elem) {
+	public void enqueue(E elem) {
 		int cantOcupados=size;
 		if (size==(arreglo.length-1)) {
-		   E[] aux=(E[])new Object[arreglo.length*2];
-		   for (int i=0; i<cantOcupados; i++) {
-			   aux[i]=arreglo[head];
-			   head=(head+1)%arreglo.length;
-		   }
-		   tail=cantOcupados; //rabo=size();
-		   head=0;
-		   arreglo=aux;
+			E[] aux=(E[])new Object[arreglo.length*2];
+			for (int i=0; i<cantOcupados; i++) {
+				aux[i]=arreglo[head];
+				head=(head+1)%arreglo.length;
+			}
+			tail=cantOcupados;
+			head=0;
+			arreglo=aux;
 		}
 		arreglo[tail]=elem;
 		tail=(tail+1)%arreglo.length;
@@ -67,5 +67,4 @@ public class ColaCircular<E> implements Queue<E>
 		size--;
 		return aux;
 	}
-
 }

@@ -4,7 +4,7 @@ package Auxiliar;
  * Clase BoundaryViolationException que extiende de la clase Exception.
  * Modela la excepción que se produce cuando se intenta avanzar o retroceder más allá de los
  * límites de la lista.
- * @author Gonzalo Perez
+ * @author Luz  Cabral & Gonzalo Perez
  * 
  */
 public class BoundaryViolationException extends Exception {

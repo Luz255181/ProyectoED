@@ -3,7 +3,7 @@ package Auxiliar;
 /**
  * Clase InvalidKeyException que extiende de Exception.
  * Modela la excepción que se produce ante una clave invalida.
- * @author Gonzalo  Perez
+ * @author Luz  Cabral & Gonzalo  Perez
  *
  */
 public class InvalidKeyException extends Exception {

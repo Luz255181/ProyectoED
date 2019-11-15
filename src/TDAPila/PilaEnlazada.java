@@ -3,7 +3,7 @@ import Auxiliar.EmptyStackException;
 
 /**
  * Clase que implementa una pila con enlaces.
- * @author Maria Luz Cabral y Gonzalo Perez.
+ * @author Maria Luz Cabral & Gonzalo Perez.
  *
  */
 public class PilaEnlazada<E> implements Stack<E>

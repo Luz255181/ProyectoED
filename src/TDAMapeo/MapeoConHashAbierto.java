@@ -23,7 +23,7 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
 		  
   //Constructor
   /**
-   * Crea un nuevo mapeo vacío con una capacidad inicial para 11 elementos 
+   * Crea un nuevo mapeo vacío con una capacidad inicial para 11 elementos.
    */
   public MapeoConHashAbierto() {
 	arreglo=(PositionList<Entrada<K, V>> []) new PositionList[tamañoInicial];
@@ -129,7 +129,7 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
   /**
    * Consulta si el número pasado por parámetro es primo.
    * @param n Es el número a verificar si es primo
-   * @return Retorna verdadero si el número pasado por parámetro es primo o falso en caso contrario
+   * @return Retorna verdadero si el número pasado por parámetro es primo, falso en caso contrario
    */
   private boolean esPrimo(int n) {
 	boolean es;

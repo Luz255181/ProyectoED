@@ -2,7 +2,7 @@ package Auxiliar;
 
 /**
  * Modela la excepción que se produce al intentar buscar un paciente inexistente.
- * @author Luz Cabral & Gonzalo Perez
+ * @author Luz  Cabral & Gonzalo  Perez
  *
  */
 public class PacienteException extends Exception {

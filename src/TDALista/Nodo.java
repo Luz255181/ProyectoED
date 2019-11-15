@@ -2,7 +2,7 @@ package TDALista;
 
 /**
  * Clase que representa a un nodo que se encuentra dentro de una posición.
- * @author Gonzalo  Perez
+ * @author Luz  Cabral & Gonzalo  Perez
  *
  * @param <E> Es el tipo del elemento asociado al nodo.
  */

@@ -39,7 +39,7 @@ public interface Map<K,V>
 	
 	/**
 	 * Remueve la entrada con la clave dada en el mapeo y devuelve su valor, o nulo si no fue encontrada.
-	 * @param e Entrada a remover.
+	 * @param key Entrada a remover.
 	 * @return Valor de la entrada removida.
 	 * @throws InvalidKeyException si la clave pasada por parámetro es inválida.
 	 */

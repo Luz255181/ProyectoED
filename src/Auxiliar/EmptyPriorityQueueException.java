@@ -3,7 +3,7 @@ package Auxiliar;
 /**
  * Clase EmptyPriorityQueueException que extiende de la clase Exception.
  * Modela la excepción que se produce ante una cola con prioridad vacía.
- * @author Gonzalo  Perez
+ * @author Luz  Cabral & Gonzalo  Perez
  *
  */
 public class EmptyPriorityQueueException extends Exception {

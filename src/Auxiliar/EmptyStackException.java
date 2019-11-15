@@ -3,7 +3,7 @@ package Auxiliar;
 /**
  * Clase EmptyStackException que extiende de la clase excepción.
  * Modela la excepción que se produce ante una pila vacía.
- * @author Gonzalo Perez
+ * @author Luz  Cabral & Gonzalo Perez
  */
 public class EmptyStackException extends Exception {
   /**
