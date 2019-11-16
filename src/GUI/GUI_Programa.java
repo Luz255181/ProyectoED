@@ -23,6 +23,7 @@ public class GUI_Programa extends JFrame {
 		super("Control sala de urgencias");
 		setSize(new Dimension(600, 475));
 		setLayout(new BorderLayout());
+		setIconImage(new ImageIcon("Simbolo hospital.png").getImage());
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		programa = new Logica();
