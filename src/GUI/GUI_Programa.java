@@ -33,7 +33,7 @@ public class GUI_Programa extends JFrame {
 		getContentPane().add(panelControles, BorderLayout.CENTER);
 	}
 	private void armarBotones() {
-		// Creo los botones
+		//Creo los botones
 		botonSalir = new JButton(" Salir "); botonSalir.setEnabled(false);
 		botonAsignar = new JButton("Asignar habitación"); botonAsignar.setEnabled(false);
 		botonDesasignar = new JButton("Desasignar habitación"); botonDesasignar.setEnabled(false);
@@ -48,7 +48,7 @@ public class GUI_Programa extends JFrame {
 		botonCantUrgencias = new JButton("Cantidad de pacientes de urgencias");
 		botonCantUrgencias.setActionCommand("cantUrgencias"); botonCantUrgencias.setEnabled(false);
 
-		// Asigno los oyentes a cada botón
+		//Asigno los oyentes a cada botón
 		botonSalir.addActionListener(new OyenteSalir());
 		botonAsignar.addActionListener(new OyenteAsignar());
 		botonDesasignar.addActionListener(new OyenteDesasignar());
@@ -68,7 +68,7 @@ public class GUI_Programa extends JFrame {
 		etiquetaFecha = new JLabel("Fecha de nacimiento: ");
 		etiquetaOS = new JLabel("Obra social: ");
 		etiquetaHabDatos = new JLabel("Habitación: ");
-		etiquetaHabAsignar=new JLabel("Habitacón: ");
+		etiquetaHabAsignar = new JLabel("Habitacón: ");
 		etiquetaCodigo = new JLabel("Código de urgencia: ");
 
 		//Creo el campo de contraseña y le agrego su oyente
@@ -83,9 +83,9 @@ public class GUI_Programa extends JFrame {
 		OS = new JTextField(); OS.setPreferredSize(new Dimension(450, 25));
 
 		//Creo las cajas de opciones y seteo las opciones
-		Character [] habitaciones= {' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
-		habitacionDatos=new JComboBox<Character>(habitaciones);
-		habitacionAsignar=new JComboBox<Character>(habitaciones);
+		Character [] habitaciones= {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'};
+		habitacionDatos = new JComboBox<Character>(habitaciones);
+		habitacionAsignar = new JComboBox<Character>(habitaciones);
 		habitacionAsignar.setPreferredSize(new Dimension(460, 25));
 		Integer[] prioridades = {1, 2, 3, 4, 5};
 		codUrgencia = new JComboBox<Integer>(prioridades);
@@ -162,13 +162,13 @@ public class GUI_Programa extends JFrame {
 			JOptionPane aviso=new JOptionPane();
 			try {
 				if (dniDatos.getText().isEmpty() || fechaNacimiento.getText().isEmpty() || OS.getText().isEmpty())
-					aviso.showMessageDialog(null, "Debe completar todos los datos del paciente para poder asignarle una habitación.", "", JOptionPane.WARNING_MESSAGE);
+					aviso.showMessageDialog(null, "Debe completar todos los datos del paciente para poder asignarle una habitación.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 				else {
 					char h=String.valueOf(habitacionAsignar.getSelectedItem()).charAt(0);
 					programa.asignarHabitacion(Integer.parseInt(dniDatos.getText()), fechaNacimiento.getText(), OS.getText(), h);
 					dniDatos.setText(""); fechaNacimiento.setText(""); OS.setText("");
 					habitacionAsignar.setSelectedIndex(0);
-					aviso.showMessageDialog(null, "Se ha asignado al paciente a la habitación: "+h, " Confirmación", JOptionPane.INFORMATION_MESSAGE);
+					aviso.showMessageDialog(null, "Se ha asignado al paciente a la habitación: "+h, "", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 			catch (PacienteException e) {
@@ -181,12 +181,12 @@ public class GUI_Programa extends JFrame {
 			JOptionPane aviso = new JOptionPane();
 			try {
 				if (dniHab.getText().equals(""))
-					aviso.showMessageDialog(null, "Debe ingresar un DNI valido.", "", JOptionPane.WARNING_MESSAGE);
+					aviso.showMessageDialog(null, "Debe ingresar un DNI valido.", "Advertencia", JOptionPane.WARNING_MESSAGE);
 				else {
 					int dni = Integer.parseInt(dniHab.getText());
 					dniHab.setText("");
 					programa.desasignarHabitacion(dni);
-					aviso.showMessageDialog(null, "El paciente de DNI: " + dni + " ha abandonado su habitación.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+					aviso.showMessageDialog(null, "El paciente de DNI: "+dni+" ha abandonado su habitación.", "", JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 			catch (PacienteException e) {
@@ -200,7 +200,7 @@ public class GUI_Programa extends JFrame {
 			try {
 				if (dniHab.getText().equals("")) {
 					dniHab.setText("");
-					mensaje.showMessageDialog(null, "No ingresó un DNI", "Error", JOptionPane.WARNING_MESSAGE);
+					mensaje.showMessageDialog(null, "No ingresó un DNI", "Advertencia", JOptionPane.WARNING_MESSAGE);
 				}
 				else {
 					int documento=Integer.parseInt(dniHab.getText());
@@ -249,18 +249,18 @@ public class GUI_Programa extends JFrame {
 				if (evento.getActionCommand().equals("Ingresar")) {
 					if (dniUrg.getText().equals("")) {
 						dniUrg.setText("");
-						mensaje.showMessageDialog(null, "No ingresó un DNI", "Error", JOptionPane.WARNING_MESSAGE);
+						mensaje.showMessageDialog(null, "No ingresó un DNI", "Advertencia", JOptionPane.WARNING_MESSAGE);
 					}
 					else {
 						int dni = Integer.parseInt(dniUrg.getText());
 						programa.ingresarPaciente(codUrgencia.getSelectedIndex() + 1, dni);
-						dniUrg.setText("");
-						mensaje.showMessageDialog(null, "El paciente de DNI: "+dni+" ingresó a la lista de urgencias.", "Confirmación", JOptionPane.INFORMATION_MESSAGE);
+						dniUrg.setText(""); codUrgencia.setSelectedIndex(0);
+						mensaje.showMessageDialog(null, "El paciente de DNI: "+dni+" ingresó a la lista de urgencias.", "", JOptionPane.INFORMATION_MESSAGE);
 					}
 				}
 				if (evento.getActionCommand().equals("Atender")) {
 					int dni = programa.atenderPaciente();
-					mensaje.showMessageDialog(null, "El paciente de DNI: " + dni + " ha sido atendido.", "Confirmación",JOptionPane.INFORMATION_MESSAGE);
+					mensaje.showMessageDialog(null, "El paciente de DNI: " + dni + " ha sido atendido.", "",JOptionPane.INFORMATION_MESSAGE);
 				}
 			}
 			catch (PacienteException e) {
