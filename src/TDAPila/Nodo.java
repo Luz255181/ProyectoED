@@ -3,7 +3,7 @@ package TDAPila;
  * Clase que representa a un nodo.
  * @author Luz  Cabral & Gonzalo  Perez
  *
- * @param <E> Es el tipo de los elementos dentro del nodo.
+ * @param <E> Es el tipo del elemento que se encuentra dentro del nodo.
  */
 public class Nodo<E> {
   private E elemento;
@@ -11,8 +11,7 @@ public class Nodo<E> {
   
   //Constructor
   /**
-   * Crea un nuevo nodo inicializando el elemento con el elemento pasado por parámetro y 
-   * el nodo siguiente con el nodo pasado por parámetro.
+   * Crea un nuevo nodo con el elemento y el nodo siguiente pasados por parámetro.
    * @param elem Es el elemento asociado al nodo.
    * @param sig Es el nodo siguiente del nodo referenciado.
    */
@@ -21,8 +20,7 @@ public class Nodo<E> {
     siguiente=sig;
   }
   /**
-   * Crea un nuevo nodo inicilizando el elemento con el elemento pasado por parámetro y
-   * el nodo siguiente con valor nulo.
+   * Crea un nuevo nodo con el elemento pasado por parámetro y el nodo siguiente con valor nulo.
    * @param elem Es el elemento asociado al nodo.
    */
   public Nodo(E elem) {

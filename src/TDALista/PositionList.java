@@ -86,7 +86,7 @@ public interface PositionList<E> extends Iterable<E> {
 	/**
 	 * Remueve el elemento que se encuentra en la posición pasada por parámetro.
 	 * @param p Posición del elemento a eliminar.
-	 * @return element Elemento removido.
+	 * @return Elemento removido.
 	 * @throws InvalidPositionException si la posición es inválida o la lista está vacía.
 	 */	
 	public E remove(Position<E> p) throws InvalidPositionException;

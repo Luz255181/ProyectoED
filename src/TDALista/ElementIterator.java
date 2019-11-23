@@ -1,5 +1,6 @@
 package TDALista;
-import java.util.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import Auxiliar.BoundaryViolationException;
 import Auxiliar.EmptyListException;
 import Auxiliar.InvalidPositionException;
@@ -13,17 +14,18 @@ import Auxiliar.InvalidPositionException;
 public class ElementIterator<E> implements Iterator<E> {
   protected PositionList<E> lista;
   protected Position<E> cursor;
+  
   //Constructor
   /**
-   * Crea un nuevo elemento iterador inicializando el atributo lista con la lista pasada por 
-   * parámetro e inicializando el cursor con el primer elemento posible.
-   * @param l Es la lista utilizada para inicializar el atributo
+   * Crea un nuevo elemento iterador inicializando los atributos.
+   * @param l Es la lista utilizada para inicializar el atributo.
    */
   public ElementIterator(PositionList<E> l) {
 	lista=l;
 	if (!lista.isEmpty())
 	   try {
-	        cursor=lista.first();}
+	        cursor=lista.first();
+	   }
 	   catch (EmptyListException e) {
 		     System.out.println(e.getMessage());
 	   }
@@ -40,7 +42,7 @@ public class ElementIterator<E> implements Iterator<E> {
    */
   public E next() throws NoSuchElementException {
     if (cursor==null)
-       throw new NoSuchElementException("Error: No hay siguiente.");
+       throw new NoSuchElementException("No hay siguiente elemento a visitar.");
     try {
         E toReturn=cursor.element();
         cursor=(cursor==lista.last()) ? null : lista.next(cursor);

@@ -2,7 +2,7 @@ package TDAColaCP;
 import java.util.Comparator;
 
 /**
- * Clase Comparador que brinda métoos para comparar dos elementos.
+ * Clase Comparador que brinda métoos para comparar dos elementos comparables.
  * @author Luz  Cabral & Gonzalo  Perez
  *
  * @param <K> Es el tipo de los elementos a comparar.

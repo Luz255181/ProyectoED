@@ -2,9 +2,10 @@ package TDACola;
 import Auxiliar.*;
 
 /**
- * Clase que implementa una cola con arreglo circular.
- * @author Maria Luz Cabral & Gonzalo Perez.
+ * Clase que implementa una cola con un arreglo cicular.
+ * @author Luz  Cabral & Gonzalo  Perez
  *
+ * @param <E> Es el tipo de los elementos de la cola.
  */
 public class ColaCircular<E> implements Queue<E>
 {

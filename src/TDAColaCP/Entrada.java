@@ -44,6 +44,9 @@ public class Entrada<K, V> implements Entry<K, V> {
   public V getValue() {
 	return valor;
   }
+  /**
+   * Crea y retorna un String con el par clave-valor de la entrada. 
+   */
   public String toString() {
 	return "("+getKey()+", "+getValue()+")";
   }

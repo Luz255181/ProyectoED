@@ -152,7 +152,7 @@ public class Logica {
 	 * Verifica si la contraseña pasada por parámetro respeta el formato especificado.
 	 * De ser así, se brinda acceso al sistema, en caso contrario la aplicación permanece bloqueada. 
 	 * @param contraseña Es el código de acceso ingresado.
-	 * @return Retorna true si el código de acceso es valido o false en caso contrario.
+	 * @return Retorna verdadero si el código de acceso es valido, falso en caso contrario.
 	 */
 	public boolean validarContraseña(String contraseña) {
 		try {

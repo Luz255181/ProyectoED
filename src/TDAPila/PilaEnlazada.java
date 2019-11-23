@@ -2,9 +2,10 @@ package TDAPila;
 import Auxiliar.EmptyStackException;
 
 /**
- * Clase que implementa una pila con enlaces.
- * @author Maria Luz Cabral & Gonzalo Perez.
+ * Clase que implementa una pila con enlaces
+ * @author Luz  Cabral & Gonzalo  Perez
  *
+ * @param <E> Es el tipo de los elementos de la pila.
  */
 public class PilaEnlazada<E> implements Stack<E>
 {

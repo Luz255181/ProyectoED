@@ -9,11 +9,11 @@ import TDALista.ListaDoblementeEnlazada;
 import TDALista.PositionList;
 
 /**
- * Clase que implementa un mapeo utilizando una tabla hash abierta. 
- * @author Luz  Cabral & Gonzalo  Perez
+ * Clase que implementa un mapeo utilizando una tabla hash abierta.
+ * @author Gonzalo  Perez
  *
- * @param <K> Es el tipo de la clave del mapeo.
- * @param <V> Es el tipo del valor del mapeo.
+ * @param <K> Es el tipo de las claves del mapeo.
+ * @param <V> Es el tipo de los valores del mapeo.
  */
 public class MapeoConHashAbierto<K, V> implements Map<K, V>{
   protected PositionList<Entrada<K, V>>[] arreglo;
@@ -23,7 +23,7 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
 		  
   //Constructor
   /**
-   * Crea un nuevo mapeo vacío con una capacidad inicial para 11 elementos.
+   * Crea un mapeo vacío con una capacidad inicial para 11 elementos.
    */
   public MapeoConHashAbierto() {
 	arreglo=(PositionList<Entrada<K, V>> []) new PositionList[tamañoInicial];
@@ -34,7 +34,7 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
   //Consultas
   /**
    * Computa el valor hash de la clave pasada por parámetro.
-   * @param clave Es la clave usada para calcular el valor hash
+   * @param clave Es la clave a computar su valor hash.
    * @return Retorna el valor hash de la clave pasada por parámetro.
    */
   protected int hash(K clave) {
@@ -45,7 +45,7 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
 	if (clave==null)
 	   throw new InvalidKeyException("La clave es invalida.");
 	int bucket=hash(clave);
-	Entrada<K, V> entrada;
+	Entrada<K, V> entrada=null;
 	boolean encontre=false;
 	V valor=null;
 	Iterator<Entrada<K,V>> it=arreglo[bucket].iterator();
@@ -63,9 +63,8 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
 	if (clave==null)
 		throw new InvalidKeyException("La clave es invalida.");
 	int bucket=hash(clave);
-	PositionList<Entrada<K, V>> lista=arreglo[bucket];
-	Iterator<Entrada<K, V>> it=lista.iterator();
-	Entrada<K, V> entrada;
+	Iterator<Entrada<K, V>> it=arreglo[bucket].iterator();
+	Entrada<K, V> entrada=null;
 	boolean encontre=false;
 	V valorAnterior=null;
 	while (it.hasNext() && !encontre) {
@@ -78,7 +77,7 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
 	}
 	if (!encontre) {
 	   entrada=new Entrada<K,V>(clave, valor);
-	   lista.addLast(entrada);
+	   arreglo[bucket].addLast(entrada);
 	   cantEntradas++;
 	   if (cantEntradas/tamañoInicial>=fc)
 		   redimensionar();
@@ -86,8 +85,8 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
 	return valorAnterior;
   }
   /**
-   * Redimensiona el tamaño del mapeo extendiendolo cuando se supera el valor 
-   * establecido del factor de carga.
+   * Redimensiona el tamaño del mapeo extendiendolo cuando se supera el valor establecido 
+   * del factor de carga.
    */
   private void redimensionar() {
 	try {
@@ -128,8 +127,8 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
   }
   /**
    * Consulta si el número pasado por parámetro es primo.
-   * @param n Es el número a verificar si es primo
-   * @return Retorna verdadero si el número pasado por parámetro es primo, falso en caso contrario
+   * @param n Es el número a verificar si es primo.
+   * @return Retorna verdadero si el número pasado por parámetro es primo, falso en caso contrario.
    */
   private boolean esPrimo(int n) {
 	boolean es;
@@ -152,19 +151,17 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
 		int bucket=hash(clave);
 		V valor=null;
 		boolean encontre=false;
-		Position<Entrada<K, V>> pos=arreglo[bucket].first();
-		while (!encontre && pos!=null) {
-			  if (pos.element().getKey().equals(clave)) {
-				 valor=pos.element().getValue();
-				 arreglo[bucket].remove(pos);
-				 encontre=true;
-				 cantEntradas--;
-			  }
-			  else {
-				   if (pos==arreglo[bucket].last())
-					  pos=null;
-				   else pos=arreglo[bucket].next(pos);
-			  }
+		if (!arreglo[bucket].isEmpty()) {
+			Position<Entrada<K, V>> pos=arreglo[bucket].first();
+			while (!encontre && pos!=null) {
+				if (pos.element().getKey().equals(clave)) {
+					valor=pos.element().getValue();
+					arreglo[bucket].remove(pos);
+					encontre=true;
+					cantEntradas--;
+				}
+				else pos=(pos==arreglo[bucket].last()) ? null : arreglo[bucket].next(pos);
+			}
 		}
 		return valor;
 	}
@@ -175,42 +172,27 @@ public class MapeoConHashAbierto<K, V> implements Map<K, V>{
   @Override
   public Iterable<K> keys() {
 	PositionList<K> claves=new ListaDoblementeEnlazada<K>();
-	Iterator<Entrada<K, V>> it;
-	Entrada<K, V> entrada;
 	for (int i=0; i<arreglo.length; i++) {
-		it=arreglo[i].iterator();
-		while (it.hasNext()) {
-			  entrada=it.next();
-			  claves.addLast(entrada.getKey());
-		}
+		for (Position<Entrada<K, V>> pos:arreglo[i].positions())
+			claves.addLast(pos.element().getKey());
 	}
 	return claves;
   }
   @Override
   public Iterable<V> values() {
     PositionList<V> valores=new ListaDoblementeEnlazada<V>();
-	Iterator<Entrada<K, V>> it;
-	Entrada<K, V> entrada;
 	for (int i=0; i<arreglo.length; i++) {
-		it=arreglo[i].iterator();
-		while (it.hasNext()) {
-			  entrada=it.next();
-			  valores.addLast(entrada.getValue());
-		}
+		for (Position<Entrada<K, V>> pos:arreglo[i].positions())
+			  valores.addLast(pos.element().getValue());
 	}
 	return valores;
   }
   @Override
   public Iterable<Entry<K, V>> entries() {
 	PositionList<Entry<K, V>> entradas=new ListaDoblementeEnlazada<Entry<K, V>>();
-	Entrada<K, V> entrada;
-	Iterator<Entrada<K, V>> it;
 	for (int i=0; i<arreglo.length; i++) {
-		it=arreglo[i].iterator();
-	  	while (it.hasNext()) {
-	  		  entrada=it.next();
-	  		  entradas.addLast(entrada);
-	  	}
+		for (Position<Entrada<K, V>> pos:arreglo[i].positions())
+		entradas.addLast(pos.element());
 	}
 	return entradas;
   }
