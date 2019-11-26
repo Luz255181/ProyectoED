@@ -6,15 +6,14 @@ import Auxiliar.InvalidPositionException;
 
 /**
  * Clase que implementa una lista doblemente enlazada con celdas de encabezamiento.
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  * @param <E> Es el tipo de los elementos de la lista.
  */
 public class ListaDoblementeEnlazada<E> implements PositionList<E> {
   protected int longitud;
   protected DNodo<E> header, trailer; //Centinelas o celdas de encabezamiento
-  
-  //Constructor
+
   /**
    * Crea una lista doblemente enlazada inicialmente vacía con celdas de encabezamiento e 
    * inicializa sus atributos.

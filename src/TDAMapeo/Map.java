@@ -5,8 +5,7 @@ import Auxiliar.InvalidKeyException;
  * @author Cátedra de Estructuras de Datos, Departamento de Cs. e Ing. de la Computación, UNS.
  */
 
-public interface Map<K,V>
-{
+public interface Map<K,V> {
 	/**
 	 * Consulta el número de entradas del mapeo.
 	 * @return Número de entradas del mapeo.

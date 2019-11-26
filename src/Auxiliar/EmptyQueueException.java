@@ -3,7 +3,7 @@ package Auxiliar;
 /**
  * Clase EmptyQueueException que extiende de Exception.
  * Modela la excepción que se produce ante una cola vacía.
- * @author Luz  Cabral & Gonzalo Perez
+ * @author Luz Cabral y Gonzalo Perez
  * 
  */
 public class EmptyQueueException extends Exception {

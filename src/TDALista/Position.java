@@ -2,7 +2,7 @@ package TDALista;
 
 /**
  * Interfaz Position
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  * @param <E> Es el tipo de los elementos dentro de la posición.
  */

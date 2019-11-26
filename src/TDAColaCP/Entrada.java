@@ -2,7 +2,7 @@ package TDAColaCP;
 
 /**
  * Clase que respresenta una entrada que contiene un par clave-valor.
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  * @param <K> Es el tipo de la clave de la entrada.
  * @param <V> Es el tipo del valor de la entrada.
@@ -10,7 +10,7 @@ package TDAColaCP;
 public class Entrada<K, V> implements Entry<K, V> {
   protected K clave;
   protected V valor;
-  //Constructor
+
   /**
    * Crea una nueva entrada con la clave y el valor pasado por parámetro. 
    * @param k Es la clave de la entrada.
@@ -45,7 +45,8 @@ public class Entrada<K, V> implements Entry<K, V> {
 	return valor;
   }
   /**
-   * Crea y retorna un String con el par clave-valor de la entrada. 
+   * Crea y retorna un String con el par clave-valor de la entrada.
+   * @return Retorna un String con el par clave-valor de la entrada. 
    */
   public String toString() {
 	return "("+getKey()+", "+getValue()+")";

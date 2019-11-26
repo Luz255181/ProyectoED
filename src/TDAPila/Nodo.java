@@ -1,15 +1,14 @@
 package TDAPila;
 /**
  * Clase que representa a un nodo.
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  * @param <E> Es el tipo del elemento que se encuentra dentro del nodo.
  */
 public class Nodo<E> {
   private E elemento;
   private Nodo<E> siguiente;
-  
-  //Constructor
+
   /**
    * Crea un nuevo nodo con el elemento y el nodo siguiente pasados por parámetro.
    * @param elem Es el elemento asociado al nodo.

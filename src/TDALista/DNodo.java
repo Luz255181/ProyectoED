@@ -2,14 +2,14 @@ package TDALista;
 
 /**
  * Clase que representa a un nodo que se encuentra dentro de una posición.
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  * @param <E> Es el tipo del elemento asociado al nodo.
  */
 public class DNodo<E> implements Position<E> {
   private E elemento;
   private DNodo<E> anterior, siguiente;
-  //Constructor
+
   /**
    * Crea un nuevo nodo con el elemento pasado por parámetro y con los nodos anterior y 
    * siguiente pasados por parámetro.

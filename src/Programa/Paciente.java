@@ -7,7 +7,6 @@ package Programa;
  *
  */
 public class Paciente {
-	
 	//Atributos de instancia
 	protected int DNI;
 	protected String fechaNacimiento;

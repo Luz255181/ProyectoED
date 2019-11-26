@@ -2,7 +2,7 @@ package TDAMapeo;
 
 /**
  * Interfaz Entry.
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  * @param <K> Es el tipo de la clave de la entrada.
  * @param <V> Es el tipo del valor de la entrada.

@@ -5,7 +5,7 @@ import Auxiliar.InvalidKeyException;
 
 /**
  * Clase Heap que implementa una cola con prioridad 
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  * @param <K> Es el tipo de la prioridad de la cola con prioridad.
  * @param <V> Es el tipo del valor asociado a la prioridad.
@@ -14,8 +14,7 @@ public class Heap<K, V> implements PriorityQueue<K, V> {
   protected Entrada<K, V> [] arreglo;
   protected Comparator<K> comp;
   protected int tamaño;
-  
-  //Constructor
+
   /**
    * Crea un heap con capacidad inicial para 100 elementos, incializa el tamaño en 0 y 
    * setea el valor de comp con el compardor pasado por parámetro.

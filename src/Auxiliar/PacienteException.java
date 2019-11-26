@@ -3,7 +3,7 @@ package Auxiliar;
 /**
  * Clase PacienteException que extiende de Exception.
  * Modela la excepción que se produce al intentar buscar un paciente inexistente.
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  */
 public class PacienteException extends Exception {

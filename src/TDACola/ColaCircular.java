@@ -3,19 +3,18 @@ import Auxiliar.*;
 
 /**
  * Clase que implementa una cola con un arreglo cicular.
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  * @param <E> Es el tipo de los elementos de la cola.
  */
-public class ColaCircular<E> implements Queue<E>
-{
+public class ColaCircular<E> implements Queue<E> {
 	protected int size;
 	protected int head;
 	protected int tail;
 	protected E[] arreglo;
 	
 	/**
-	 * Crea una cola vacia.
+	 * Crea una cola con arreglo circular vacía.
 	 */
 	public ColaCircular()
 	{

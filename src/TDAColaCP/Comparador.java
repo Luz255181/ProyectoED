@@ -3,7 +3,7 @@ import java.util.Comparator;
 
 /**
  * Clase Comparador que brinda métoos para comparar dos elementos comparables.
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  * @param <K> Es el tipo de los elementos a comparar.
  */

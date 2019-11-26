@@ -3,7 +3,7 @@ package Auxiliar;
 /**
  * Clase InvalidEntryException que extiende de la clase Exception.
  * Modela la excepción que se produce ante una entrada que es invalida.
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  */
 public class InvalidEntryException extends Exception {

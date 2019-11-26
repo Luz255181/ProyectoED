@@ -136,11 +136,15 @@ public class GUI_Programa extends JFrame {
 			boolean esValida = programa.validarContraseña(evento.getActionCommand());
 			if (esValida) {
 				textoContraseña.setEnabled(false); textoContraseña.setText("");
-				botonSalir.setEnabled(true); botonAsignar.setEnabled(true);
-				botonDesasignar.setEnabled(true); botonDatos.setEnabled(true);
-				botonListar.setEnabled(true); botonCantPacientes.setEnabled(true);
-				botonIngresar.setEnabled(true); botonAtender.setEnabled(true);
-				botonCantUrgencias.setEnabled(true);
+				dniHab.setEnabled(true); dniUrg.setEnabled(true);
+				dniDatos.setEnabled(true); fechaNacimiento.setEnabled(true);
+				OS.setEnabled(true);
+				botonAsignar.setEnabled(true); botonDesasignar.setEnabled(true);
+				botonDatos.setEnabled(true); botonListar.setEnabled(true);
+				botonCantPacientes.setEnabled(true); botonIngresar.setEnabled(true);
+				botonAtender.setEnabled(true); botonCantUrgencias.setEnabled(true);
+				botonSalir.setEnabled(true); codUrgencia.setEnabled(true);
+				habitacionDatos.setEnabled(true); habitacionAsignar.setEnabled(true);
 			}
 			else {
 				textoContraseña.setText("");
@@ -151,11 +155,15 @@ public class GUI_Programa extends JFrame {
 	}
 	private class OyenteSalir implements ActionListener {
 		public void actionPerformed(ActionEvent evento) {
-			textoContraseña.setEnabled(true); botonSalir.setEnabled(false);
+			textoContraseña.setEnabled(true); dniHab.setEnabled(false);
+			dniUrg.setEnabled(false); dniDatos.setEnabled(false);
+			fechaNacimiento.setEnabled(false); OS.setEnabled(false);
 			botonAsignar.setEnabled(false); botonDesasignar.setEnabled(false);
 			botonDatos.setEnabled(false); botonListar.setEnabled(false);
 			botonCantPacientes.setEnabled(false); botonIngresar.setEnabled(false);
 			botonAtender.setEnabled(false); botonCantUrgencias.setEnabled(false);
+			habitacionDatos.setEnabled(false); habitacionAsignar.setEnabled(false);
+			codUrgencia.setEnabled(false); botonSalir.setEnabled(false);
 		}
 	}
 	private class OyenteAsignar implements ActionListener {

@@ -1,5 +1,5 @@
 package TDAPila;
-import Auxiliar.*;
+import Auxiliar.EmptyStackException;
 
 /**
  * Interface Stack

@@ -3,15 +3,14 @@ import Auxiliar.EmptyStackException;
 
 /**
  * Clase que implementa una pila con enlaces
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  * @param <E> Es el tipo de los elementos de la pila.
  */
-public class PilaEnlazada<E> implements Stack<E>
-{
+public class PilaEnlazada<E> implements Stack<E> {
 	protected Nodo<E> top;
 	protected int size;
-	
+
 	/**
 	 * Crea una pila vacía, el nodo head se inicializa null y el tamaño se inicializa en 0.
 	 */

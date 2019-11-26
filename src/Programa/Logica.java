@@ -9,14 +9,13 @@ import TDAPila.*;
 
 /**
  * Clase que modela las funciones que brinda el sistema.
- * @author Luz  Cabral & Gonzalo  Perez
+ * @author Luz Cabral y Gonzalo Perez
  *
  */
 public class Logica {
 	protected MapeoConHashAbierto<Integer,Paciente> pacientes;
 	protected PriorityQueue<Integer, Integer> urgencias;
 	
-	//Constructor
 	/**
 	 * Inicializa el sistema de registro de habitaciones y el sistema de urgencias ambos vacíos.
 	 */
@@ -33,7 +32,7 @@ public class Logica {
 	 */
 	public void ingresarPaciente(int prioridad, int DNI) throws PacienteException {
 		try {
-			if (prioridad<1 || 5<prioridad)
+			if (prioridad<1 || prioridad>5)
 				throw new PacienteException("La prioridad no se encuentra dentro del rango aceptado");
 			else urgencias.insert(prioridad, DNI);
 		}
@@ -48,8 +47,7 @@ public class Logica {
 	 * @param fecha Es la fecha de nacimiento del paciente a ingresar al sistema.
 	 * @param obra Es la obra social del paciente a ingresar al sistema.
 	 * @param hab Es la habitación a asignarle al paciente.
-	 * @throws PacienteException Si el paciente ya se encuentra en el sistema o 
-	 * 							 los datos ingresado son invalidos.
+	 * @throws PacienteException Si el paciente ya se encuentra en el sistema o los datos ingresado son invalidos.
 	 */
 	public void asignarHabitacion(int DNI, String fecha, String obra, char hab) throws PacienteException {
 		try {
@@ -152,7 +150,7 @@ public class Logica {
 	 * Verifica si la contraseña pasada por parámetro respeta el formato especificado.
 	 * De ser así, se brinda acceso al sistema, en caso contrario la aplicación permanece bloqueada. 
 	 * @param contraseña Es el código de acceso ingresado.
-	 * @return Retorna verdadero si el código de acceso es valido, falso en caso contrario.
+	 * @return Verdadero si el código de acceso es valido, falso en caso contrario.
 	 */
 	public boolean validarContraseña(String contraseña) {
 		try {
